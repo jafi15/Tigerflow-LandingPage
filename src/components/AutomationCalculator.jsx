@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, Users, Clock, TrendingUp, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Users, Clock, TrendingUp, ArrowRight } from "lucide-react";
 import { C } from "../theme";
 import { Eyebrow } from "./Eyebrow";
 
@@ -63,7 +63,7 @@ export function AutomationCalculator() {
           
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "32px" }}>
-              <div style={{ width: "40px", height: "40px", background: C.accentTint, borderRadius: "10px", display: "flex", alignItems: "center", justifyCenter: "center", color: C.accent }}>
+              <div style={{ width: "40px", height: "40px", background: C.accentTint, borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", color: C.accent }}>
                 <TrendingUp size={20} />
               </div>
               <span style={{ fontSize: "12px", fontWeight: 600, color: C.accent, letterSpacing: ".05em", textTransform: "uppercase" }}>Einsparpotenzial</span>
@@ -98,7 +98,7 @@ export function AutomationCalculator() {
               </div>
             </div>
 
-            <a href="#kontakt" style={{ marginTop: "32px", display: "flex", alignItems: "center", justifyCenter: "center", gap: "10px", width: "100%", background: C.accent, color: "#fff", textDecoration: "none", padding: "16px", borderRadius: "12px", fontSize: "14px", fontWeight: 500, transition: "all 0.2s" }} className="cta-btn">
+            <a href="#kontakt" style={{ marginTop: "32px", display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", width: "100%", background: C.accent, color: "#fff", textDecoration: "none", padding: "16px", borderRadius: "12px", fontSize: "14px", fontWeight: 500, transition: "all 0.2s" }} className="cta-btn">
               Potenzial ausschöpfen <ArrowRight size={16} />
             </a>
           </div>

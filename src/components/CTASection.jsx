@@ -7,6 +7,7 @@ export function CTASection() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
   const { ref, visible } = useReveal(0.15);
+  const contactEmail = "service@tigerflow.de";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,9 +50,9 @@ export function CTASection() {
             marginRight: "auto",
           }}
         >
-          Bereit, wenn
+          Lassen Sie uns prüfen,
           <br />
-          Sie es sind.
+          wo der größte Hebel liegt.
         </h2>
         <p
           style={{
@@ -63,8 +64,8 @@ export function CTASection() {
             margin: "0 auto 48px",
           }}
         >
-          Kein Pitch. Kein Overhead. Ein strukturiertes Gespräch über das, was in
-          Ihrem Unternehmen möglich ist.
+          Wir analysieren, ob Webdesign, TigerBot, Voice Agent oder ein Bundle
+          für Ihr Unternehmen zuerst den größten Effekt hat.
         </p>
         {status === "done" ? (
           <div
@@ -153,7 +154,7 @@ export function CTASection() {
                   }}
                 />
               )}
-              Beratung buchen →
+              Analyse anfragen →
             </button>
           </form>
         )}
@@ -166,11 +167,40 @@ export function CTASection() {
           style={{
             fontSize: "11px",
             color: C.textDis,
-            marginTop: "16px",
+            marginTop: "14px",
             letterSpacing: ".02em",
           }}
         >
-          Kein Spam. Kein Newsletter. Nur ein Gespräch.
+          Kein Spam. Kein Newsletter. Nur eine konkrete Einschätzung.
+        </p>
+        <p
+          style={{
+            fontSize: "13px",
+            color: C.textTer,
+            marginTop: "24px",
+          }}
+        >
+          Oder direkt per E-Mail:{" "}
+          <a
+            href={`mailto:${contactEmail}`}
+            style={{
+              color: C.textSec,
+              textDecoration: "none",
+              borderBottom: `.5px solid ${C.borderEm}`,
+              paddingBottom: "2px",
+              transition: "color .15s,border-color .15s",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.color = C.accent;
+              e.target.style.borderBottomColor = C.accent;
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.color = C.textSec;
+              e.target.style.borderBottomColor = C.borderEm;
+            }}
+          >
+            {contactEmail}
+          </a>
         </p>
       </div>
     </section>

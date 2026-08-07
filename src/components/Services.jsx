@@ -206,6 +206,24 @@ export function Services() {
             Sechs Systeme.<br />
             Ein Ziel: <span style={{ color: C.accent }}>Wachstum.</span>
           </h2>
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
+            marginTop: "-42px",
+            marginBottom: "54px",
+            padding: "9px 14px",
+            borderRadius: 999,
+            border: `.5px solid ${C.accentMid}`,
+            background: "linear-gradient(135deg, rgba(255,122,0,0.09), rgba(255,122,0,0.025))",
+            color: C.textSec,
+            fontSize: 12,
+            lineHeight: 1.4,
+            boxShadow: "0 10px 34px rgba(0,0,0,0.24)",
+          }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.accent, boxShadow: `0 0 10px ${C.accent}` }} />
+            Einzeln buchbar oder als TigerFlow System kombinierbar.
+          </div>
         </div>
 
         {/* Hub Grid */}
@@ -258,7 +276,7 @@ export function Services() {
           )}
 
           {/* ── TigerBot Main Card ── */}
-          <div className={`tigerbot-card ${visible ? "reveal-tb" : ""}`} style={{ gridArea: "tigerbot", position: "relative", zIndex: 2, opacity: 0 }}>
+          <div id="service-tigerbot" className={`tigerbot-card service-anchor ${visible ? "reveal-tb" : ""}`} style={{ gridArea: "tigerbot", position: "relative", zIndex: 2, opacity: 0 }}>
 
             {/* Pulsing outer aura */}
             <div aria-hidden="true" style={{
@@ -370,6 +388,8 @@ export function Services() {
             return (
               <div 
                 key={id} 
+                id={`service-${id}`}
+                className="service-anchor"
                 ref={(el) => { modRefs.current[id] = el; }}
                 style={{ 
                   gridArea, 

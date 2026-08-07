@@ -7,27 +7,29 @@ export function Results() {
   const stats = [
     {
       value: "3×",
+      tag: "Potenzial",
       label: "mehr qualifizierte Leads",
-      note: "durch automatisierte Qualifizierung",
+      note: "durch strukturierte Vorqualifizierung",
     },
-    { value: "<2s", label: "Reaktionszeit", note: "KI-gestützte Erstantwort" },
-    { value: "94%", label: "Qualifizierungsrate", note: "AI Chatbot Durchschnitt" },
+    { value: "<2s", tag: "Zielwert", label: "Reaktionszeit", note: "automatisierte Erstantwort" },
+    { value: "94%", tag: "System-Effekt", label: "Antwortabdeckung", note: "bei klar definierten FAQ- und Lead-Flows" },
     {
-      value: "–60%",
+      value: "-60%",
+      tag: "Potenzial",
       label: "manuelle Aufgaben",
-      note: "durch Workflow-Automatisierung",
+      note: "durch CRM- und Workflow-Automation",
     },
   ];
   const cases = [
     {
-      sector: "E-Commerce",
-      result:
-        "Bestellabbrüche um 34% reduziert durch automatisierten Chatbot mit Produkt-Empfehlungslogik und Re-Engagement-Sequenzen.",
-    },
-    {
       sector: "B2B Vertrieb",
       result:
-        "Von 12 auf 58 qualifizierte Gespräche pro Monat durch Outbound Voice Agent und automatisierte Lead-Pipeline.",
+        "Von manueller Nachverfolgung zu automatischer Qualifizierung, CRM-Übergabe und Terminbuchung für warme Leads.",
+    },
+    {
+      sector: "Lokale Dienstleister",
+      result:
+        "Von verpassten Anrufen und verstreuten Website-Anfragen zu einem klaren Prozess für Rückruf, Angebot und Follow-up.",
     },
   ];
 
@@ -68,6 +70,20 @@ export function Results() {
             <br />
             für sich sprechen.
           </h2>
+          <p
+            style={{
+              fontSize: "15px",
+              fontWeight: 300,
+              color: C.textSec,
+              lineHeight: 1.7,
+              maxWidth: "520px",
+              marginTop: "-36px",
+              marginBottom: "44px",
+            }}
+          >
+            Beispielhafte Potenziale aus automatisierten Lead- und Vertriebsprozessen.
+            Die konkrete Wirkung hängt von Traffic, Angebot und bestehender Pipeline ab.
+          </p>
           <div
             style={{
               display: "grid",
@@ -102,6 +118,24 @@ export function Results() {
                       "linear-gradient(to right,transparent,rgba(255,255,255,0.06),transparent)",
                   }}
                 />
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    padding: "3px 8px",
+                    borderRadius: "100px",
+                    background: C.accentTint,
+                    border: `.5px solid ${C.accentMid}`,
+                    color: C.accentLt,
+                    fontSize: "9px",
+                    fontWeight: 600,
+                    letterSpacing: ".08em",
+                    textTransform: "uppercase",
+                    marginBottom: "14px",
+                  }}
+                >
+                  {stats[i].tag}
+                </div>
                 <div
                   style={{
                     fontSize: "36px",
@@ -184,6 +218,9 @@ export function Results() {
                   }}
                 >
                   {sector}
+                </div>
+                <div style={{ fontSize: "11px", color: C.textDis, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: "10px" }}>
+                  Beispielszenario
                 </div>
                 <p style={{ fontSize: "14px", color: C.textSec, lineHeight: 1.7 }}>
                   {result}

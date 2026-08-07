@@ -14,12 +14,12 @@ export function Hero() {
   const { display, done } = useTyped(TYPED_WORDS);
   const mouse = useMouseParallax(1);
   const services = [
-    "TigerBot",
-    "Voice Agents",
-    "CRM",
-    "Automation",
-    "Lead Engine",
-    "Webdesign",
+    { label: "TigerBot", href: "#service-tigerbot" },
+    { label: "Webdesign", href: "#service-webdesign" },
+    { label: "Voice Agents", href: "#service-voice" },
+    { label: "CRM", href: "#service-crm" },
+    { label: "Lead-Systeme", href: "#service-leads" },
+    { label: "Automation", href: "#service-workflow" },
   ];
 
   return (
@@ -159,12 +159,12 @@ export function Hero() {
         </div>
 
         <div
-          className="fu5"
+          className="fu5 hero-service-badges"
           style={{
             marginTop: "44px",
             display: "flex",
             alignItems: "center",
-            gap: "10px",
+            gap: "8px",
             flexWrap: "wrap",
           }}
         >
@@ -176,23 +176,41 @@ export function Hero() {
               fontWeight: 500,
             }}
           >
-            TigerFlow Ecosystem
+            Einzeln buchbar
           </span>
-          {services.map((s) => (
-            <span
-              key={s}
-              style={{ display: "flex", alignItems: "center", gap: "10px" }}
+          {services.map((service) => (
+            <a
+              key={service.href}
+              href={service.href}
+              className="hero-service-badge"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "7px",
+                padding: "7px 11px",
+                borderRadius: "999px",
+                border: `.5px solid ${C.borderEm}`,
+                background: "rgba(255,255,255,0.025)",
+                color: C.textTer,
+                textDecoration: "none",
+                fontSize: "12px",
+                lineHeight: 1,
+                transition:
+                  "color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease,box-shadow .18s ease",
+              }}
             >
               <span
                 style={{
-                  width: "3px",
-                  height: "3px",
+                  width: "5px",
+                  height: "5px",
                   borderRadius: "50%",
-                  background: C.borderEm,
+                  background: C.accent,
+                  boxShadow: `0 0 10px ${C.accent}66`,
+                  flexShrink: 0,
                 }}
               />
-              <span style={{ fontSize: "12px", color: C.textTer }}>{s}</span>
-            </span>
+              {service.label}
+            </a>
           ))}
         </div>
       </div>
@@ -209,7 +227,7 @@ export function Hero() {
           gap: "6px",
           opacity: 0.28,
         }}
-        className="fu5"
+        className="fu5 hero-scroll-indicator"
       >
         <span
           style={{

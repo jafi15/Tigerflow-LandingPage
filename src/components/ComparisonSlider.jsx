@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { AlertCircle, Zap, Shield, MousePointer2 } from "lucide-react";
+import { useState, useRef } from "react";
+import { AlertCircle, Zap, MousePointer2 } from "lucide-react";
 import { C } from "../theme";
 import { Eyebrow } from "./Eyebrow";
 

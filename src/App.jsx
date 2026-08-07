@@ -14,10 +14,15 @@ import { ExpertNote } from "./components/ExpertNote";
 import { ExitIntent } from "./components/ExitIntent";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
+import { ImpressumPage } from "./components/ImpressumPage";
+import { DatenschutzPage } from "./components/DatenschutzPage";
+import { Analytics } from "@vercel/analytics/react";
 import "./index.css";
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
+  const isImpressum = window.location.pathname === "/impressum";
+  const isDatenschutz = window.location.pathname === "/datenschutz";
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -26,28 +31,37 @@ export default function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        fontFamily: "'Inter',-apple-system,sans-serif",
-        background: C.pageBg,
-        color: C.textPri,
-        minHeight: "100vh",
-      }}
-    >
-      <Navbar scrolled={scrolled} />
-      <StickyNav />
-      <ExitIntent />
-      <Hero />
-      <Problem />
-      <ComparisonSlider />
-      <Services />
-      <DiagnosisForm />
-      <Process />
-      <Results />
-      <AutomationCalculator />
-      <ExpertNote />
-      <CTASection />
-      <Footer />
-    </div>
+    <>
+      {isImpressum ? (
+        <ImpressumPage />
+      ) : isDatenschutz ? (
+        <DatenschutzPage />
+      ) : (
+        <div
+          style={{
+            fontFamily: "'Inter',-apple-system,sans-serif",
+            background: C.pageBg,
+            color: C.textPri,
+            minHeight: "100vh",
+          }}
+        >
+          <Navbar scrolled={scrolled} />
+          <StickyNav />
+          <ExitIntent />
+          <Hero />
+          <Problem />
+          <ComparisonSlider />
+          <Services />
+          <DiagnosisForm />
+          <Process />
+          <Results />
+          <AutomationCalculator />
+          <ExpertNote />
+          <CTASection />
+          <Footer />
+        </div>
+      )}
+      <Analytics />
+    </>
   );
 }

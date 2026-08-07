@@ -1,6 +1,8 @@
 import { C } from "../theme";
 
 export function Footer() {
+  const contactEmail = "service@tigerflow.de";
+
   return (
     <footer
       style={{
@@ -25,11 +27,28 @@ export function Footer() {
       >
         TigerFlow
       </div>
-      <div style={{ display: "flex", gap: "28px", flexWrap: "wrap" }}>
-        {["Impressum", "Datenschutz", "AGB"].map((l) => (
+      <div style={{ display: "flex", gap: "28px", flexWrap: "wrap", alignItems: "center" }}>
+        <a
+          href={`mailto:${contactEmail}`}
+          style={{
+            fontSize: "12px",
+            color: C.textSec,
+            textDecoration: "none",
+            transition: "color .15s",
+          }}
+          onMouseEnter={(e) => (e.target.style.color = C.accent)}
+          onMouseLeave={(e) => (e.target.style.color = C.textSec)}
+        >
+          {contactEmail}
+        </a>
+        {[
+          { label: "Impressum", href: "/impressum" },
+          { label: "Datenschutz", href: "/datenschutz" },
+          { label: "AGB", href: "#" },
+        ].map(({ label, href }) => (
           <a
-            key={l}
-            href="#"
+            key={label}
+            href={href}
             style={{
               fontSize: "12px",
               color: C.textTer,
@@ -39,7 +58,7 @@ export function Footer() {
             onMouseEnter={(e) => (e.target.style.color = C.textSec)}
             onMouseLeave={(e) => (e.target.style.color = C.textTer)}
           >
-            {l}
+            {label}
           </a>
         ))}
       </div>
