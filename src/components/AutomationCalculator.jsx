@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, Users, Clock, TrendingUp, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Users, Clock, TrendingUp, ArrowRight } from "lucide-react";
 import { C } from "../theme";
 import { Eyebrow } from "./Eyebrow";
 
