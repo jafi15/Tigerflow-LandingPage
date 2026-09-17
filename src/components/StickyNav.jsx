@@ -52,6 +52,8 @@ export function StickyNav() {
                   src="/tigerflow-mark.png"
                   alt=""
                   aria-hidden="true"
+                  width="320"
+                  height="245"
                   style={{
                     width: "30px",
                     height: "24px",
