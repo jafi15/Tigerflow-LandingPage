@@ -77,7 +77,7 @@ export function AutomationCalculator() {
                 animate={{ opacity: 1, y: 0 }}
                 style={{ fontSize: "48px", fontWeight: 600, color: C.textPri, letterSpacing: "-.04em" }}
               >
-                €{yearlySavings.toLocaleString()}
+                €{yearlySavings.toLocaleString("de-DE")}
               </motion.div>
             </div>
 
@@ -87,7 +87,7 @@ export function AutomationCalculator() {
                   <Clock size={14} />
                   <span style={{ fontSize: "11px" }}>Zeit / Jahr</span>
                 </div>
-                <div style={{ fontSize: "20px", fontWeight: 500, color: C.textPri }}>{hoursSavedYearly.toLocaleString()}h</div>
+                <div style={{ fontSize: "20px", fontWeight: 500, color: C.textPri }}>{hoursSavedYearly.toLocaleString("de-DE")}h</div>
               </div>
               <div style={{ background: "rgba(255,255,255,0.03)", padding: "20px", borderRadius: "12px", border: "0.5px solid rgba(255,255,255,0.05)" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px", color: C.textSec }}>

@@ -91,4 +91,34 @@ describe("React hydration of prerendered routes", () => {
       dom.window.close();
     });
   }
+
+  it("homepage hydration is independent of the server and browser default number locales", async () => {
+    const nativeToLocaleString = Number.prototype.toLocaleString;
+    let defaultLocale = "en-US";
+    vi.spyOn(Number.prototype, "toLocaleString").mockImplementation(function (locales, options) {
+      return nativeToLocaleString.call(this, locales ?? defaultLocale, options);
+    });
+
+    const serverHtml = renderToString(<App pathname="/" />);
+    const dom = installDom("/", serverHtml);
+    defaultLocale = "de-DE";
+    const recoverableErrors = [];
+
+    let root;
+    await act(async () => {
+      root = hydrateRoot(dom.window.document.getElementById("root"), <App pathname="/" />, {
+        onRecoverableError(error) {
+          recoverableErrors.push(error);
+        },
+      });
+      await Promise.resolve();
+    });
+
+    expect(recoverableErrors).toEqual([]);
+    expect(dom.window.document.body.textContent).toContain("€156.000");
+    expect(dom.window.document.body.textContent).toContain("2.400h");
+
+    await act(async () => root.unmount());
+    dom.window.close();
+  });
 });
