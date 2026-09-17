@@ -20,8 +20,8 @@ export function useTyped(words) {
         }, 46 + Math.random() * 18);
       } else {
         if (wi === words.length - 1) {
-          setDone(true);
-          return;
+          t.current = setTimeout(() => setDone(true), 0);
+          return clr;
         }
         t.current = setTimeout(() => setPhase("deleting"), 2400);
       }
