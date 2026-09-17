@@ -85,18 +85,24 @@ function buildHead({ title, description, canonical, includeJsonLd, robots }) {
   return lines.join("\n    ");
 }
 
-function injectPage(template, { head, bodyHtml }) {
+function injectPage(template, { head, bodyHtml, includeCriticalFontPreload = false }) {
+  const pageTemplate = includeCriticalFontPreload
+    ? template
+    : template.replace(
+        /\s*<link(?=[^>]*rel="preload")(?=[^>]*href="\/fonts\/space-grotesk-latin-wght-normal\.woff2")[^>]*\/>\s*/,
+        "\n    "
+      );
   const headStart = "<!--SEO_HEAD_START-->";
   const headEnd = "<!--SEO_HEAD_END-->";
-  const startIdx = template.indexOf(headStart);
-  const endIdx = template.indexOf(headEnd);
+  const startIdx = pageTemplate.indexOf(headStart);
+  const endIdx = pageTemplate.indexOf(headEnd);
   if (startIdx === -1 || endIdx === -1) {
     throw new Error(
       "dist/index.html is missing the <!--SEO_HEAD_START/END--> markers"
     );
   }
-  const before = template.slice(0, startIdx + headStart.length);
-  const after = template.slice(endIdx);
+  const before = pageTemplate.slice(0, startIdx + headStart.length);
+  const after = pageTemplate.slice(endIdx);
   const withHead = `${before}\n    ${head}\n    ${after}`;
 
   const rootMarker = '<div id="root"></div>';
@@ -147,7 +153,11 @@ async function main() {
       includeJsonLd: route.path === "/",
       robots: "index, follow",
     });
-    const page = injectPage(template, { head, bodyHtml });
+    const page = injectPage(template, {
+      head,
+      bodyHtml,
+      includeCriticalFontPreload: route.path === "/",
+    });
     const outPath = path.join(distDir, route.outFile);
     assertRenderedPage(page, route.outFile);
     await writeFile(outPath, page, "utf8");

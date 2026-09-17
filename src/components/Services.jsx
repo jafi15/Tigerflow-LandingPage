@@ -111,17 +111,28 @@ function SpotlightCard({ children, style, className }) {
 function TigerImage() {
   return (
     <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0, borderRadius: "16px" }}>
-      <img 
-        src="/tigerbot-bg.png" 
-        alt="TigerBot AI" 
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "top right",
-          opacity: 0.95,
-        }}
-      />
+      <picture style={{ display: "block", width: "100%", height: "100%" }}>
+        <source
+          type="image/avif"
+          srcSet="/tigerbot-bg-480.avif 480w, /tigerbot-bg-768.avif 768w, /tigerbot-bg.avif 1024w"
+          sizes="(max-width: 430px) calc(100vw - 50px), 380px"
+        />
+        <img
+          src="/tigerbot-bg.png"
+          alt=""
+          width="1024"
+          height="1536"
+          loading="lazy"
+          decoding="async"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "top right",
+            opacity: 0.95,
+          }}
+        />
+      </picture>
       {/* Starker Fade von unten nach oben, damit der Text gut lesbar bleibt */}
       <div style={{
         position: "absolute",
