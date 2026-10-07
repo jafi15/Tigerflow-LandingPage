@@ -14,6 +14,15 @@ export const ROUTES = [
     priority: "1.0",
   },
   {
+    path: "/webdesign-heide",
+    outFile: "webdesign-heide.html",
+    title: "Webdesign Heide: Moderne Website ab 829 € | TigerFlow",
+    description:
+      "Professionelles Webdesign aus Heide: responsive Unternehmenswebsite, Texte, technische SEO-Basis und Anfragefunnel – ab 829 € netto.",
+    changefreq: "monthly",
+    priority: "0.9",
+  },
+  {
     path: "/impressum",
     outFile: "impressum.html",
     title: "Impressum | TigerFlow",

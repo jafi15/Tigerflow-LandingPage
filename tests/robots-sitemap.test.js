@@ -62,7 +62,6 @@ describe("sitemap.xml", () => {
       expect(loc.toLowerCase()).not.toContain("preview");
     }
     for (const forbidden of [
-      "/webdesign-heide",
       "/webdesign-dithmarschen",
       "/preise",
       "/ueber-uns",

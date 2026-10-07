@@ -432,10 +432,32 @@ export function Services() {
 
                   <p style={{ fontSize: 13, color: "#A0A0A0", lineHeight: 1.6, position: "relative", zIndex: 2, paddingRight: 20 }}>{body}</p>
 
-                  {/* Bottom-right arrow */}
-                  <svg width="18" height="18" viewBox="0 0 24 24" style={{ position: "absolute", bottom: 20, right: 20, zIndex: 2 }}>
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke={C.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                  </svg>
+                  {id === "webdesign" ? (
+                    <a
+                      href="/webdesign-heide"
+                      style={{
+                        position: "relative",
+                        zIndex: 2,
+                        marginTop: 18,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 8,
+                        color: C.accent,
+                        fontSize: 11,
+                        fontWeight: 600,
+                        textDecoration: "none",
+                      }}
+                    >
+                      Webdesign in Heide ansehen
+                      <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" style={{ position: "absolute", bottom: 20, right: 20, zIndex: 2 }}>
+                      <path d="M5 12h14M12 5l7 7-7 7" stroke={C.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    </svg>
+                  )}
                 </SpotlightCard>
               </div>
             );

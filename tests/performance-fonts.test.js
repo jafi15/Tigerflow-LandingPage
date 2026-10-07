@@ -67,7 +67,13 @@ describe("Fonts are self-hosted and non-render-blocking", () => {
 
   it("keeps the critical font preload on the built homepage only", () => {
     expect(distIndexHtml).toMatch(/<link[^>]*rel=["']preload["'][^>]*space-grotesk-latin-wght-normal\.woff2[^>]*>/);
-    for (const file of ["impressum.html", "datenschutz.html", "agb.html", "404.html"]) {
+    for (const file of [
+      "webdesign-heide.html",
+      "impressum.html",
+      "datenschutz.html",
+      "agb.html",
+      "404.html",
+    ]) {
       const html = readFileSync(path.join(DIST_DIR, file), "utf8");
       expect(html).not.toMatch(/rel=["']preload["'][^>]*space-grotesk-latin-wght-normal\.woff2/);
     }
