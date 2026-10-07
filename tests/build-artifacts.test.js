@@ -5,6 +5,7 @@ import { DIST_DIR } from "../scripts/serve-dist.mjs";
 
 const EXPECTED_FILES = [
   "index.html",
+  "webdesign-heide.html",
   "impressum.html",
   "datenschutz.html",
   "agb.html",

@@ -7,11 +7,11 @@ import { DIST_DIR } from "../scripts/serve-dist.mjs";
 const homepageHtml = readFileSync(path.join(DIST_DIR, "index.html"), "utf8");
 const homepage = new JSDOM(homepageHtml).window.document;
 
-describe("Phase 1 preserves the approved visible homepage scope", () => {
-  it("keeps the original badge, hero paragraph, and service wording", () => {
+describe("homepage preserves the approved visible scope", () => {
+  it("removes the generic hero badge while preserving the hero paragraph and service wording", () => {
     const bodyText = homepage.body.textContent.replace(/\s+/g, " ").trim();
 
-    expect(bodyText).toContain("TigerFlow · AI Systems & Automation");
+    expect(bodyText).not.toContain("TigerFlow · AI Systems & Automation");
     expect(bodyText).toContain("TigerFlow automatisiert Leads, Anfragen und Prozesse");
     expect(bodyText).toContain("Premium-Websites");
     expect(bodyText).not.toContain("Webdesign · SEO · KI-Automatisierung aus Schleswig-Holstein");

@@ -3,6 +3,7 @@ import { C } from "./theme";
 import { Navbar } from "./components/Navbar";
 import { StickyNav } from "./components/StickyNav";
 import { Hero } from "./components/Hero";
+import { PositioningIntro } from "./components/PositioningIntro";
 import { Problem } from "./components/Problem";
 import { ComparisonSlider } from "./components/ComparisonSlider";
 import { Services } from "./components/Services";
@@ -17,6 +18,7 @@ import { ImpressumPage } from "./components/ImpressumPage";
 import { DatenschutzPage } from "./components/DatenschutzPage";
 import { AGBPage } from "./components/AGBPage";
 import { NotFoundPage } from "./components/NotFoundPage";
+import { WebdesignHeidePage } from "./components/WebdesignHeidePage";
 import { Analytics } from "@vercel/analytics/react";
 import { ROUTES } from "./routes.config";
 import "./index.css";
@@ -30,6 +32,7 @@ export default function App({
   const isImpressum = pathname === "/impressum";
   const isDatenschutz = pathname === "/datenschutz";
   const isAGB = pathname === "/agb";
+  const isWebdesignHeide = pathname === "/webdesign-heide";
   const isKnown = KNOWN_PATHS.has(pathname);
 
   useEffect(() => {
@@ -46,6 +49,8 @@ export default function App({
         <DatenschutzPage />
       ) : isAGB ? (
         <AGBPage />
+      ) : isWebdesignHeide ? (
+        <WebdesignHeidePage />
       ) : !isKnown ? (
         <NotFoundPage />
       ) : (
@@ -60,6 +65,7 @@ export default function App({
           <Navbar scrolled={scrolled} />
           <StickyNav />
           <Hero />
+          <PositioningIntro />
           <Problem />
           <ComparisonSlider />
           <Services />
