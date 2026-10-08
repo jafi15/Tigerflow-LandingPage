@@ -20,6 +20,7 @@ import { AGBPage } from "./components/AGBPage";
 import { NotFoundPage } from "./components/NotFoundPage";
 import { WebdesignHeidePage } from "./components/WebdesignHeidePage";
 import { WebdesignDithmarschenPage } from "./components/WebdesignDithmarschenPage";
+import { ProjectCheck } from "./components/ProjectCheck";
 import { Analytics } from "@vercel/analytics/react";
 import { ROUTES } from "./routes.config";
 import "./index.css";
@@ -82,6 +83,7 @@ export default function App({
           <Footer />
         </div>
       )}
+      {pathname !== "/" && <ProjectCheck hideTrigger />}
       <Analytics />
     </>
   );
