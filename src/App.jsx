@@ -46,17 +46,17 @@ export default function App({
   return (
     <>
       {isImpressum ? (
-        <ImpressumPage />
+        <><Navbar scrolled currentPath={pathname} /><ImpressumPage /></>
       ) : isDatenschutz ? (
-        <DatenschutzPage />
+        <><Navbar scrolled currentPath={pathname} /><DatenschutzPage /></>
       ) : isAGB ? (
-        <AGBPage />
+        <><Navbar scrolled currentPath={pathname} /><AGBPage /></>
       ) : isWebdesignHeide ? (
         <WebdesignHeidePage />
       ) : isWebdesignDithmarschen ? (
         <WebdesignDithmarschenPage />
       ) : !isKnown ? (
-        <NotFoundPage />
+        <><Navbar scrolled currentPath={pathname} /><NotFoundPage /></>
       ) : (
         <div
           style={{
@@ -66,7 +66,7 @@ export default function App({
             minHeight: "100vh",
           }}
         >
-          <Navbar scrolled={scrolled} />
+          <Navbar scrolled={scrolled} currentPath={pathname} />
           <StickyNav />
           <Hero />
           <PositioningIntro />

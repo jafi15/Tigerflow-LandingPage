@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Calculator } from "lucide-react";
 import { C } from "../theme";
+import { ServiceMegaMenu } from "./ServiceMegaMenu";
 
 export function StickyNav() {
   const [show, setShow] = useState(false);
@@ -79,10 +80,11 @@ export function StickyNav() {
                 whiteSpace: "nowrap",
               }}
             >
-              Wir skalieren. Sie <span style={{ color: C.accent }}>profitieren.</span>
+              <ServiceMegaMenu className="tf-service-menu-sticky" />
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+              <ServiceMegaMenu className="tf-sticky-mobile-menu" />
               <a href="#rechner" style={{ fontSize: "13px", color: C.textSec, textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }} className="hide-mobile nav-link">
                 <Calculator size={14} /> ROI Rechner
               </a>

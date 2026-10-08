@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { C } from "../theme";
 import { Footer } from "./Footer";
+import { ServiceMegaMenu } from "./ServiceMegaMenu";
 import "./WebdesignHeidePage.css";
 
 const scopeItems = [
@@ -113,7 +114,7 @@ function PageHeader() {
     <header className="wdh-nav">
       <BrandMark />
       <nav className="wdh-nav-links" aria-label="Seitennavigation">
-        <a href="#umfang">Leistungen</a>
+        <ServiceMegaMenu currentPath="/webdesign-heide" />
         <a href="#ablauf">Ablauf</a>
         <a href="#preis">Preis</a>
         <a href="#faq">FAQ</a>

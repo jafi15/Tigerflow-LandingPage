@@ -128,7 +128,8 @@
 }
 @media(max-width:760px) {
   .wdh-nav { width:calc(100% - 40px); }
-  .wdh-nav-links { display:none; }
+  .wdh-nav-links { display:flex;gap:0; }
+  .wdh-nav-links>a { display:none; }
   .wdh-nav-cta { font-size:0; }
   .wdh-nav-cta svg { width:18px;height:18px; }
   .wdh-hero { min-height:auto;padding:128px 22px 75px;gap:55px; }
