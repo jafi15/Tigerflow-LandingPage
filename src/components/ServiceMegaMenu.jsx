@@ -36,6 +36,15 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
     </a>
   );
 
+  const openProjectCheck = (event) => {
+    if (menuRef.current) menuRef.current.open = false;
+    window.dispatchEvent(
+      new CustomEvent("tigerflow:open-project-check", {
+        detail: { trigger: event.currentTarget },
+      })
+    );
+  };
+
   return (
     <details ref={menuRef} className={`tf-service-menu ${className}`.trim()}>
       <summary>
@@ -53,7 +62,7 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
               <Globe2 size={16} aria-hidden="true" />
               <span><strong>Website</strong><small>Auftritt & Anfragen</small></span>
             </div>
-            <a href="/#leistungen"><span>Website im Überblick</span><ArrowRight size={13} aria-hidden="true" /></a>
+            <a href="/#service-webdesign"><span>Website im Überblick</span><ArrowRight size={13} aria-hidden="true" /></a>
             {pageLink("/webdesign-heide", "Webdesign Heide")}
             {pageLink("/webdesign-dithmarschen", "Webdesign Dithmarschen")}
           </section>
@@ -78,7 +87,7 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
         </div>
         <div className="tf-service-footer">
           <span><i aria-hidden="true" /> Website als Einstieg. SEO und Automatisierung als Ausbau.</span>
-          <a href="/#kontakt">Projekt einordnen <ArrowRight size={13} aria-hidden="true" /></a>
+          <button type="button" onClick={openProjectCheck}>Projekt einordnen <ArrowRight size={13} aria-hidden="true" /></button>
         </div>
       </div>
     </details>

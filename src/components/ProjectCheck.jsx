@@ -86,7 +86,7 @@ function buildInquiryHref(answers) {
   return `mailto:service@tigerflow.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-export function ProjectCheck() {
+export function ProjectCheck({ hideTrigger = false }) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState([]);
@@ -100,6 +100,17 @@ export function ProjectCheck() {
     setAnswers([]);
     setOpen(true);
   };
+
+  useEffect(() => {
+    const handleExternalOpen = (event) => {
+      triggerRef.current = event.detail?.trigger ?? document.activeElement;
+      setStep(0);
+      setAnswers([]);
+      setOpen(true);
+    };
+    window.addEventListener("tigerflow:open-project-check", handleExternalOpen);
+    return () => window.removeEventListener("tigerflow:open-project-check", handleExternalOpen);
+  }, []);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -153,18 +164,22 @@ export function ProjectCheck() {
 
   return (
     <>
-      <button ref={triggerRef} type="button" className="cta-btn cta-full project-check-trigger" onClick={start}>
-        <span className="project-check-trigger-system" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-        </span>
-        <span className="project-check-trigger-label">Projekt-Check starten</span>
-        <span className="project-check-trigger-arrow" aria-hidden="true">
-          <ArrowRight size={16} />
-        </span>
-      </button>
-      <span className="project-check-microcopy">In 2 Minuten zum passenden Einstieg</span>
+      {!hideTrigger && (
+        <>
+          <button ref={triggerRef} type="button" className="cta-btn cta-full project-check-trigger" onClick={start}>
+            <span className="project-check-trigger-system" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span className="project-check-trigger-label">Projekt-Check starten</span>
+            <span className="project-check-trigger-arrow" aria-hidden="true">
+              <ArrowRight size={16} />
+            </span>
+          </button>
+          <span className="project-check-microcopy">In 2 Minuten zum passenden Einstieg</span>
+        </>
+      )}
 
       {open &&
         createPortal(
