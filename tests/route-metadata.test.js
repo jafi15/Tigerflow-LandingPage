@@ -50,8 +50,8 @@ describe("route-specific metadata in prerendered HTML", () => {
 
       it("has matching Open Graph data", () => {
         const og = (prop) => doc.querySelector(`meta[property="${prop}"]`)?.getAttribute("content");
-        expect(og("og:title")).toBe(route.title);
-        expect(og("og:description")).toBe(route.description);
+        expect(og("og:title")).toBe(route.ogTitle ?? route.title);
+        expect(og("og:description")).toBe(route.ogDescription ?? route.description);
         expect(og("og:url")).toBe(canonicalUrl);
         expect(og("og:type")).toBe("website");
         expect(og("og:image")).toMatch(/^https:\/\/tigerflow\.de\//);
@@ -59,7 +59,12 @@ describe("route-specific metadata in prerendered HTML", () => {
 
       it("has a Twitter card", () => {
         expect(doc.querySelector('meta[name="twitter:card"]')?.getAttribute("content")).toBeTruthy();
-        expect(doc.querySelector('meta[name="twitter:title"]')?.getAttribute("content")).toBe(route.title);
+        expect(doc.querySelector('meta[name="twitter:title"]')?.getAttribute("content")).toBe(
+          route.ogTitle ?? route.title
+        );
+        expect(doc.querySelector('meta[name="twitter:description"]')?.getAttribute("content")).toBe(
+          route.ogDescription ?? route.description
+        );
       });
 
       it("is indexable (robots: index, follow)", () => {

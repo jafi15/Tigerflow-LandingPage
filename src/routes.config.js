@@ -23,6 +23,18 @@ export const ROUTES = [
     priority: "0.9",
   },
   {
+    path: "/webdesign-dithmarschen",
+    outFile: "webdesign-dithmarschen.html",
+    title: "Webdesign Dithmarschen: Website ab 829 € | TigerFlow",
+    description:
+      "Professionelles Webdesign für Unternehmen in Dithmarschen: responsive Website, Texte, technische SEO-Basis und Anfrageweg – ab 829 € netto.",
+    ogTitle: "Webdesign für Unternehmen in Dithmarschen | TigerFlow",
+    ogDescription:
+      "Moderne Unternehmenswebsites für Dithmarschen – klarer Leistungsumfang, regionale Erreichbarkeit und ausbaufähige technische Grundlage.",
+    changefreq: "monthly",
+    priority: "0.8",
+  },
+  {
     path: "/impressum",
     outFile: "impressum.html",
     title: "Impressum | TigerFlow",

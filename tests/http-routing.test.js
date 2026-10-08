@@ -20,7 +20,14 @@ afterAll(async () => {
 });
 
 describe("production-like dist HTTP behavior", () => {
-  for (const route of ["/", "/webdesign-heide", "/impressum", "/datenschutz", "/agb"]) {
+  for (const route of [
+    "/",
+    "/webdesign-heide",
+    "/webdesign-dithmarschen",
+    "/impressum",
+    "/datenschutz",
+    "/agb",
+  ]) {
     it(`${route} returns prerendered HTML with HTTP 200`, async () => {
       const response = await fetch(`${baseUrl}${route}`);
       const body = await response.text();

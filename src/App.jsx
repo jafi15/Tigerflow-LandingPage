@@ -19,6 +19,7 @@ import { DatenschutzPage } from "./components/DatenschutzPage";
 import { AGBPage } from "./components/AGBPage";
 import { NotFoundPage } from "./components/NotFoundPage";
 import { WebdesignHeidePage } from "./components/WebdesignHeidePage";
+import { WebdesignDithmarschenPage } from "./components/WebdesignDithmarschenPage";
 import { Analytics } from "@vercel/analytics/react";
 import { ROUTES } from "./routes.config";
 import "./index.css";
@@ -33,6 +34,7 @@ export default function App({
   const isDatenschutz = pathname === "/datenschutz";
   const isAGB = pathname === "/agb";
   const isWebdesignHeide = pathname === "/webdesign-heide";
+  const isWebdesignDithmarschen = pathname === "/webdesign-dithmarschen";
   const isKnown = KNOWN_PATHS.has(pathname);
 
   useEffect(() => {
@@ -51,6 +53,8 @@ export default function App({
         <AGBPage />
       ) : isWebdesignHeide ? (
         <WebdesignHeidePage />
+      ) : isWebdesignDithmarschen ? (
+        <WebdesignDithmarschenPage />
       ) : !isKnown ? (
         <NotFoundPage />
       ) : (

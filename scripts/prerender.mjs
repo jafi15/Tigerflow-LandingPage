@@ -51,7 +51,15 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;");
 }
 
-function buildHead({ title, description, canonical, includeJsonLd, robots }) {
+function buildHead({
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  canonical,
+  includeJsonLd,
+  robots,
+}) {
   const lines = [
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}" />`,
@@ -62,8 +70,8 @@ function buildHead({ title, description, canonical, includeJsonLd, robots }) {
   lines.push(
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="TigerFlow" />`,
-    `<meta property="og:title" content="${escapeHtml(title)}" />`,
-    `<meta property="og:description" content="${escapeHtml(description)}" />`
+    `<meta property="og:title" content="${escapeHtml(ogTitle)}" />`,
+    `<meta property="og:description" content="${escapeHtml(ogDescription)}" />`
   );
   if (canonical) {
     lines.push(`<meta property="og:url" content="${canonical}" />`);
@@ -72,8 +80,8 @@ function buildHead({ title, description, canonical, includeJsonLd, robots }) {
     `<meta property="og:image" content="${OG_IMAGE}" />`,
     `<meta property="og:locale" content="de_DE" />`,
     `<meta name="twitter:card" content="summary" />`,
-    `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
-    `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
+    `<meta name="twitter:title" content="${escapeHtml(ogTitle)}" />`,
+    `<meta name="twitter:description" content="${escapeHtml(ogDescription)}" />`,
     `<meta name="twitter:image" content="${OG_IMAGE}" />`,
     `<meta name="robots" content="${robots}" />`
   );
@@ -149,6 +157,8 @@ async function main() {
     const head = buildHead({
       title: route.title,
       description: route.description,
+      ogTitle: route.ogTitle,
+      ogDescription: route.ogDescription,
       canonical,
       includeJsonLd: route.path === "/",
       robots: "index, follow",
