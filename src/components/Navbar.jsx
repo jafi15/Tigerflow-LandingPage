@@ -1,9 +1,10 @@
 import { C } from "../theme";
+import { ServiceMegaMenu } from "./ServiceMegaMenu";
 
-export function Navbar({ scrolled }) {
-  const links = ["Leistungen", "Prozess", "Ergebnisse", "Kontakt"];
+export function Navbar({ scrolled, currentPath = "/" }) {
   return (
     <nav
+      className="tf-global-navbar"
       style={{
         position: "fixed",
         top: 0,
@@ -21,11 +22,14 @@ export function Navbar({ scrolled }) {
         transition: "background .35s,border-color .35s",
       }}
     >
-      <div
+      <a
+        href="/"
         style={{
           display: "flex",
           alignItems: "center",
           gap: "9px",
+          color: "inherit",
+          textDecoration: "none",
         }}
       >
         <img
@@ -52,23 +56,17 @@ export function Navbar({ scrolled }) {
         >
           TigerFlow
         </div>
-      </div>
+      </a>
       <div
-        className="hide-mobile"
+        className="tf-main-nav"
         style={{ display: "flex", gap: "32px", alignItems: "center" }}
       >
-        {links.map((l) => (
-          <a
-            key={l}
-            href={`#${l.toLowerCase()}`}
-            className="nav-link"
-            style={{ fontSize: "13px", fontWeight: 500, letterSpacing: ".005em" }}
-          >
-            {l}
-          </a>
-        ))}
+        <ServiceMegaMenu currentPath={currentPath} />
+        <a href="/#prozess" className="nav-link tf-main-nav-link">Prozess</a>
+        <a href="/#ergebnisse" className="nav-link tf-main-nav-link">Ergebnisse</a>
         <a
-          href="#kontakt"
+          href="/#kontakt"
+          className="tf-main-nav-cta"
           style={{
             fontSize: "12px",
             fontWeight: 500,

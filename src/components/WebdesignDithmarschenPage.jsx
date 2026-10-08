@@ -16,6 +16,7 @@ import { useEffect, useRef, useState } from "react";
 import { C } from "../theme";
 import { createFaqCloseController } from "./faqMotion";
 import { Footer } from "./Footer";
+import { ServiceMegaMenu } from "./ServiceMegaMenu";
 import { setupScrollReveal } from "./scrollReveal";
 import "./WebdesignDithmarschenPage.css";
 
@@ -185,7 +186,7 @@ function PageHeader() {
       <BrandMark />
       <nav className="wdd-nav-links" aria-label="Seitennavigation">
         <a href="#situationen">Unternehmen</a>
-        <a href="#leistungen">Leistungen</a>
+        <ServiceMegaMenu currentPath="/webdesign-dithmarschen" />
         <a href="#preis">Preis</a>
         <a href="#faq">FAQ</a>
       </nav>
