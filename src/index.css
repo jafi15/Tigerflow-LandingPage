@@ -206,6 +206,8 @@ body {
   box-shadow: 0 0 0 4px rgba(255,122,0,.18);
 }
 
+.tf-sticky-cta-short { display: none; }
+
 @keyframes heroCorridorLineReveal {
   from { transform: scaleX(0); opacity: 0; }
   to { transform: scaleX(1); opacity: .78; }
@@ -418,6 +420,12 @@ body {
   .tf-main-nav-link { display: none; }
   .tf-main-nav-cta { display: none; }
   .tf-sticky-mobile-menu { display: block; }
+  .tf-sticky-bar { padding: 0 14px !important; }
+  .tf-sticky-brand-label { display: none !important; }
+  .tf-sticky-actions { gap: 8px !important; }
+  .tf-sticky-cta { padding: 9px 12px !important; gap: 5px !important; }
+  .tf-sticky-cta-full { display: none; }
+  .tf-sticky-cta-short { display: inline; }
   .hero-h1 { font-size: clamp(32px, 9vw, 48px) !important; }
   .legal-row {
     grid-template-columns: 1fr !important;
