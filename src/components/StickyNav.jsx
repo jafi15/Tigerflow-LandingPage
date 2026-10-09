@@ -4,6 +4,15 @@ import { ArrowRight, Calculator } from "lucide-react";
 import { C } from "../theme";
 import { ServiceMegaMenu } from "./ServiceMegaMenu";
 
+// Same mechanism as ServiceMegaMenu's "Projekt einordnen" trigger.
+function openProjectCheck(event) {
+  window.dispatchEvent(
+    new CustomEvent("tigerflow:open-project-check", {
+      detail: { trigger: event.currentTarget },
+    })
+  );
+}
+
 export function StickyNav() {
   const [show, setShow] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -88,24 +97,27 @@ export function StickyNav() {
               <a href="#rechner" style={{ fontSize: "13px", color: C.textSec, textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }} className="hide-mobile nav-link">
                 <Calculator size={14} /> ROI Rechner
               </a>
-              <a 
-                href="#kontakt" 
-                style={{ 
-                  background: C.accent, 
-                  color: "#fff", 
-                  textDecoration: "none", 
-                  padding: "10px 20px", 
-                  borderRadius: "100px", 
-                  fontSize: "13px", 
-                  fontWeight: 500, 
-                  display: "flex", 
-                  alignItems: "center", 
-                  gap: "8px" 
-                }} 
+              <button
+                type="button"
+                onClick={openProjectCheck}
+                style={{
+                  background: C.accent,
+                  color: "#fff",
+                  border: "none",
+                  padding: "10px 20px",
+                  borderRadius: "100px",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  fontFamily: "'Inter',sans-serif",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  cursor: "pointer",
+                }}
                 className="cta-btn"
               >
-                Jetzt anfragen <ArrowRight size={14} />
-              </a>
+                Projekt-Check starten <ArrowRight size={14} />
+              </button>
             </div>
           </div>
         </motion.div>
