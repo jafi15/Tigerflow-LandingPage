@@ -36,12 +36,13 @@ export function StickyNav() {
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           exit={{ y: -100 }}
+          className="tf-sticky-bar"
           style={{
             position: "fixed",
             top: 0,
             left: 0,
             right: 0,
-            height: "64px",
+            minHeight: "64px",
             background: "rgba(11,11,15,0.85)",
             backdropFilter: "blur(16px)",
             borderBottom: `.5px solid ${C.borderEm}`,
@@ -72,7 +73,7 @@ export function StickyNav() {
                     borderRadius: "4px",
                   }}
                 />
-                <div style={{ fontSize: "14px", fontWeight: 600, color: C.textPri, letterSpacing: ".04em" }}>TigerFlow</div>
+                <div className="tf-sticky-brand-label" style={{ fontSize: "14px", fontWeight: 600, color: C.textPri, letterSpacing: ".04em" }}>TigerFlow</div>
               </div>
             </div>
 
@@ -92,7 +93,7 @@ export function StickyNav() {
               <ServiceMegaMenu className="tf-service-menu-sticky" />
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <div className="tf-sticky-actions" style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               <ServiceMegaMenu className="tf-sticky-mobile-menu" />
               <a href="#rechner" style={{ fontSize: "13px", color: C.textSec, textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }} className="hide-mobile nav-link">
                 <Calculator size={14} /> ROI Rechner
@@ -113,10 +114,13 @@ export function StickyNav() {
                   alignItems: "center",
                   gap: "8px",
                   cursor: "pointer",
+                  whiteSpace: "nowrap",
                 }}
-                className="cta-btn"
+                className="cta-btn tf-sticky-cta"
               >
-                Projekt-Check starten <ArrowRight size={14} />
+                <span className="tf-sticky-cta-full">Projekt-Check starten</span>
+                <span className="tf-sticky-cta-short">Projekt-Check</span>
+                <ArrowRight size={14} aria-hidden="true" />
               </button>
             </div>
           </div>
