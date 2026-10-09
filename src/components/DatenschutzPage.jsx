@@ -30,7 +30,7 @@ const sections = [
   {
     title: "6. Formulare und Supabase",
     content:
-      "Die auf dieser Website eingesetzten Kontakt-, Analyse- oder Diagnoseformulare werden über Supabase als technisches Backend verarbeitet. Wenn Sie ein Formular absenden, können die von Ihnen eingegebenen Daten, zum Beispiel E-Mail-Adresse, Unternehmensangaben, ausgewählte Optionen und Nachrichtentexte, zur Bearbeitung Ihrer Anfrage gespeichert und verarbeitet werden.\n\nPflichtangaben werden entsprechend gekennzeichnet. Ohne diese Angaben kann eine Bearbeitung der Anfrage unter Umständen nicht erfolgen.\n\nDie Verarbeitung erfolgt, um Ihre Anfrage zu beantworten, Potenziale einzuschätzen und passende TigerFlow-Leistungen vorzubereiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen Anfragen sowie Art. 6 Abs. 1 lit. f DSGVO für die strukturierte Bearbeitung eingehender Anfragen.",
+      "Die auf dieser Website eingesetzten Kontakt-, Analyse- oder Diagnoseformulare werden über Supabase als technisches Backend verarbeitet. Wenn Sie ein Formular absenden, können die von Ihnen eingegebenen Daten, zum Beispiel E-Mail-Adresse, Name/Ansprechpartner, Unternehmensangaben, ausgewählte Optionen und Nachrichtentexte, zur Bearbeitung Ihrer Anfrage gespeichert und verarbeitet werden.\n\nPflichtangaben werden entsprechend gekennzeichnet. Ohne diese Angaben kann eine Bearbeitung der Anfrage unter Umständen nicht erfolgen.\n\nDie Verarbeitung erfolgt, um Ihre Anfrage zu beantworten, Potenziale einzuschätzen und passende TigerFlow-Leistungen vorzubereiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen Anfragen sowie Art. 6 Abs. 1 lit. f DSGVO für die strukturierte Bearbeitung eingehender Anfragen.",
   },
   {
     title: "7. Cookies und Tracking",
@@ -140,7 +140,7 @@ export function DatenschutzPage() {
               Datenschutzerklärung
             </h1>
             <p style={{ color: C.textTer, fontSize: 15, lineHeight: 1.7, maxWidth: 680 }}>
-              Informationen zur Verarbeitung personenbezogener Daten auf dieser Website. Stand: Juni 2026.
+              Informationen zur Verarbeitung personenbezogener Daten auf dieser Website. Stand: Oktober 2026.
             </p>
           </div>
 

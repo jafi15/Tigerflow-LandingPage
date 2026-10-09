@@ -106,6 +106,31 @@ describe("TigerFlow project check", () => {
     );
   });
 
+  it("offers a real contact form in the result view alongside the existing mailto CTA, with no leftover false no-data claim", () => {
+    click(container.querySelector("button"));
+    for (const label of [
+      "Website neu aufbauen oder modernisieren",
+      "Eine bestehende Website",
+      "Angebot klarer präsentieren",
+      "In 1–3 Monaten",
+    ]) {
+      const option = [...document.querySelectorAll(".project-check-option")].find((button) =>
+        button.textContent.includes(label)
+      );
+      click(option);
+    }
+
+    const dialog = document.querySelector('[role="dialog"]');
+    // The existing mailto CTA is unchanged and still present...
+    expect(dialog.querySelector('a[href^="mailto:service@tigerflow.de"]')).not.toBeNull();
+    // ...alongside the new, real contact form...
+    const contactForm = dialog.querySelector(".project-check-contact");
+    expect(contactForm).not.toBeNull();
+    expect(contactForm.querySelector('input[name="email"]')).not.toBeNull();
+    // ...and the now-false "nothing was submitted yet" claim is gone.
+    expect(dialog.textContent).not.toMatch(/noch keine daten übermittelt/i);
+  });
+
   it("closes with Escape", () => {
     const trigger = container.querySelector("button");
     click(trigger);

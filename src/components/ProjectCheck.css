@@ -468,3 +468,127 @@
   .project-check-overlay,.project-check-dialog,.project-check-option,.project-check-trigger,.project-check-trigger-arrow { animation:none!important;transition:none!important; }
   .project-check-trigger-system i { animation:none!important; }
 }
+
+.project-check-contact {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid #1D1D1D;
+}
+
+.project-check-contact h3 {
+  margin: 0 0 16px;
+  color: #F1EDE6;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.project-check-contact-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-check-contact-field {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-check-contact-field label {
+  color: #9A9690;
+  font-size: 10px;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.project-check-contact-limit {
+  text-transform: none;
+  letter-spacing: normal;
+  color: #6F6B65;
+}
+
+.project-check-contact-field input,
+.project-check-contact-field textarea {
+  padding: 12px 14px;
+  border: 1px solid #232323;
+  border-radius: 10px;
+  background: rgba(17,17,17,.88);
+  color: #F1EDE6;
+  font: 500 13px/1.4 'Inter',sans-serif;
+}
+
+.project-check-contact-field textarea {
+  min-height: 84px;
+  resize: vertical;
+}
+
+.project-check-contact-field input:focus-visible,
+.project-check-contact-field textarea:focus-visible {
+  outline: 2px solid #FF9B42;
+  outline-offset: 1px;
+  border-color: rgba(255,122,0,.42);
+}
+
+.project-check-contact-privacy {
+  margin: 4px 0 16px;
+  color: #8A8A8A;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.project-check-contact-privacy a {
+  color: #FF9B42;
+  text-decoration: underline;
+}
+
+.project-check-contact button[type="submit"] {
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 100px;
+  background: #FF7A00;
+  color: #111111;
+  font: 600 12px/1 'Inter',sans-serif;
+  cursor: pointer;
+}
+
+.project-check-contact button[type="submit"]:disabled {
+  opacity: .6;
+  cursor: progress;
+}
+
+.project-check-contact-success {
+  margin-top: 26px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(255,122,0,.3);
+  border-radius: 10px;
+  background: rgba(255,122,0,.08);
+  color: #F1EDE6;
+  font-size: 12px;
+}
+
+.project-check-contact-error {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid rgba(255,122,0,.3);
+  border-radius: 10px;
+  background: rgba(255,122,0,.06);
+  color: #F1EDE6;
+  font-size: 11px;
+}
+
+.project-check-contact-fallback {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: #FF9B42;
+  font-weight: 600;
+  text-decoration: none;
+}
