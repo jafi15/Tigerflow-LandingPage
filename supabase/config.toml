@@ -1,0 +1,27 @@
+# Local-only scaffold. No project is linked and no remote credentials are
+# stored here or anywhere else in this repo.
+project_id = "tigerflow-landing-local"
+
+[functions.submit-lead]
+# verify_jwt is OFF on purpose. The current Supabase Publishable/Secret API
+# keys (sb_publishable_…/sb_secret_…) are opaque strings, not JWTs, and are
+# sent on the `apikey` header rather than `Authorization: Bearer`. The
+# platform's verify_jwt gate only understands legacy JWT-shaped keys —
+# leaving it on would reject every legitimate call from a client using the
+# new keys with "Invalid JWT".
+#
+# With verify_jwt off, the platform itself no longer requires any
+# credential, so handler.ts enforces its own check instead: it rejects any
+# request whose apikey header is not one of this project's current
+# Publishable Keys (see publishableKey.ts). IMPORTANT: that check is a
+# client-channel/billing-plane gate, NOT spam or abuse protection — a
+# Publishable Key is meant to be public and readable from any browser that
+# loads the site, so it proves nothing about intent. Spam/abuse defense is
+# entirely the honeypot, timing check and rate limiting, independent of
+# this gate.
+#
+# The real security boundary for the data itself stays server-side: RLS +
+# explicit REVOKE (default-deny) plus minimal, explicit service_role GRANTs
+# on the lead tables and the create_project_check_lead()/check_rate_limit()
+# RPC functions — never the invocation credential.
+verify_jwt = false
