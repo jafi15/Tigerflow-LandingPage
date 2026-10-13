@@ -35,6 +35,15 @@ export const ROUTES = [
     priority: "0.8",
   },
   {
+    path: "/seo-heide",
+    outFile: "seo-heide.html",
+    title: "SEO Heide: Analyse & klarer Maßnahmenplan | TigerFlow",
+    description:
+      "SEO aus Heide: TigerFlow analysiert Website, Keywords und Wettbewerb und erstellt eine priorisierte SEO-Roadmap. SEO-Setup ab 499 € netto.",
+    changefreq: "monthly",
+    priority: "0.9",
+  },
+  {
     path: "/impressum",
     outFile: "impressum.html",
     title: "Impressum | TigerFlow",

@@ -341,7 +341,7 @@ describe("/webdesign-dithmarschen money page", () => {
     expect(internalLinks.some((a) => a.getAttribute("href") === "/webdesign-heide")).toBe(true);
   });
 
-  it("does not change the homepage hero or add a link to the new route yet", () => {
+  it("preserves the homepage hero and exposes the approved route in shared navigation", () => {
     const homepage = loadDoc("index.html");
     expect(homepage.querySelector("h1").textContent.replace(/\s+/g, " ").trim()).toBe("Wir bauen");
     expect(homepage.body.textContent).toContain("TigerFlow automatisiert Leads, Anfragen und Prozesse");
@@ -349,10 +349,10 @@ describe("/webdesign-dithmarschen money page", () => {
       [...homepage.querySelectorAll("a[href]")].some(
         (a) => a.getAttribute("href") === "/webdesign-dithmarschen"
       )
-    ).toBe(false);
+    ).toBe(true);
   });
 
-  it("does not change /webdesign-heide content or add a link to the new route yet", () => {
+  it("preserves /webdesign-heide content and exposes the approved route in shared navigation", () => {
     const heide = loadDoc("webdesign-heide.html");
     expect(heide.querySelector("h1").textContent).toContain("Webdesign in Heide");
     expect(heide.body.textContent).toContain("Websites ab 829 € netto");
@@ -360,7 +360,7 @@ describe("/webdesign-dithmarschen money page", () => {
       [...heide.querySelectorAll("a[href]")].some(
         (a) => a.getAttribute("href") === "/webdesign-dithmarschen"
       )
-    ).toBe(false);
+    ).toBe(true);
   });
 
   it("is structurally distinct from /webdesign-heide (own CSS class namespace, not a copy)", () => {

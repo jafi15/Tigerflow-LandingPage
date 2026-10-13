@@ -24,6 +24,7 @@ describe("production-like dist HTTP behavior", () => {
     "/",
     "/webdesign-heide",
     "/webdesign-dithmarschen",
+    "/seo-heide",
     "/impressum",
     "/datenschutz",
     "/agb",
