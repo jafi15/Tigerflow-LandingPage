@@ -356,10 +356,10 @@ function useReveal() {
   return ref;
 }
 
-// Mobile bar shows once the hero CTA has scrolled away and hides again when the
-// closing CTA section comes into view, so there is never a duplicate CTA on screen.
-function useStickyCta(pageRef) {
-  const [visible, setVisible] = useState(false);
+// Floating chrome appears once the hero CTA has scrolled away. The mobile bar also
+// hides again at the closing CTA section, so there is never a duplicate CTA on screen.
+function useScrollChrome(pageRef) {
+  const [chrome, setChrome] = useState({ pastHero: false, reachedFinal: false });
 
   useEffect(() => {
     const page = pageRef.current;
@@ -374,14 +374,65 @@ function useStickyCta(pageRef) {
         if (entry.target === heroCta) state.pastHero = !entry.isIntersecting && above;
         else state.reachedFinal = entry.isIntersecting || above;
       });
-      setVisible(state.pastHero && !state.reachedFinal);
+      setChrome({ ...state });
     });
     observer.observe(heroCta);
     observer.observe(finalCta);
     return () => observer.disconnect();
   }, [pageRef]);
 
-  return visible;
+  return chrome;
+}
+
+const topbarLinks = [
+  { id: "ablauf", label: "Ablauf" },
+  { id: "preis", label: "Preis" },
+  { id: "faq", label: "FAQ" },
+];
+
+// Marks the section that currently sits in the middle band of the viewport.
+function useActiveSection(pageRef) {
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    const page = pageRef.current;
+    if (!page || !("IntersectionObserver" in window)) return undefined;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    page.querySelectorAll("main > section[id]").forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [pageRef]);
+
+  return active;
+}
+
+function StickyHeader({ visible, active }) {
+  return (
+    <header className={`sh-topbar${visible ? " is-visible" : ""}`} inert={!visible}>
+      <div className="sh-topbar-inner">
+        <a className="sh-brand" href="/" aria-label="TigerFlow Startseite">
+          <img src="/tigerflow-mark.png" alt="" aria-hidden="true" width="320" height="245" />
+          <span>TigerFlow</span>
+        </a>
+        <nav className="sh-topbar-links" aria-label="Abschnitte">
+          {topbarLinks.map(({ id, label }) => (
+            <a key={id} href={`#${id}`} aria-current={active === id ? "true" : undefined}>
+              {label}
+            </a>
+          ))}
+        </nav>
+        <ProjectCheckButton className="sh-btn-sm">
+          Projekt-Check <ArrowRight size={15} aria-hidden="true" />
+        </ProjectCheckButton>
+      </div>
+    </header>
+  );
 }
 
 function StickyCta({ visible }) {
@@ -440,7 +491,7 @@ function PageHeader() {
 function KeywordMapVisual() {
   return (
     <div className="sh-visual" aria-hidden="true">
-      <div className="sh-map sh-glass">
+      <div className="sh-map sh-surface">
         <div className="sh-map-head">
           <Search size={14} />
           <b>KEYWORD-MAP</b>
@@ -501,7 +552,8 @@ function ScopeList({ title, items, icon: Icon, tone }) {
 
 export function SeoHeidePage() {
   const pageRef = useReveal();
-  const stickyVisible = useStickyCta(pageRef);
+  const { pastHero, reachedFinal } = useScrollChrome(pageRef);
+  const activeSection = useActiveSection(pageRef);
 
   return (
     <div
@@ -583,7 +635,7 @@ export function SeoHeidePage() {
               ))}
             </ol>
           </div>
-          <aside className="sh-result sh-glass" data-sh-reveal>
+          <aside className="sh-result sh-surface" data-sh-reveal>
             <FileSearch size={22} aria-hidden="true" />
             <span>SICHTBARES ERGEBNIS</span>
             <h3>Schriftliche Keyword-Map und priorisierter Plan</h3>
@@ -602,7 +654,7 @@ export function SeoHeidePage() {
             text="SEO für Unternehmen in Heide ist mehr als ein Eintrag bei Google. Das Google-Unternehmensprofil ist ein Baustein, wirksam wird lokale Suchmaschinenoptimierung erst, wenn Website, Unternehmensdaten und Anfrageweg zusammenpassen."
           />
           <div className="sh-local">
-            <div className="sh-hub sh-glass" data-sh-reveal>
+            <div className="sh-hub sh-surface" data-sh-reveal>
               <i className="sh-rings" aria-hidden="true" />
               <MapPin size={22} aria-hidden="true" />
               <b>Heide</b>
@@ -653,7 +705,7 @@ export function SeoHeidePage() {
         </section>
 
         <section id="preis" className="sh-section">
-          <div className="sh-price sh-glass" data-sh-reveal>
+          <div className="sh-price sh-surface" data-sh-reveal>
             <div className="sh-price-copy">
               <span>TRANSPARENTER EINSTIEG</span>
               <h2>Klarer Einstieg, klare Grenze zwischen Setup und Umsetzung.</h2>
@@ -752,7 +804,7 @@ export function SeoHeidePage() {
         </section>
 
         <section id="projektanfrage" className="sh-section sh-final">
-          <div className="sh-final-card sh-glass" data-sh-reveal>
+          <div className="sh-final-card sh-surface" data-sh-reveal>
             <div className="sh-final-glow" aria-hidden="true" />
             <span><Compass size={14} aria-hidden="true" /> NÄCHSTER SCHRITT</span>
             <h2>Klären wir, welche SEO-Maßnahmen für Ihre Website wirklich sinnvoll sind.</h2>
@@ -775,7 +827,8 @@ export function SeoHeidePage() {
       </main>
 
       <Footer />
-      <StickyCta visible={stickyVisible} />
+      <StickyHeader visible={pastHero} active={activeSection} />
+      <StickyCta visible={pastHero && !reachedFinal} />
     </div>
   );
 }
