@@ -355,14 +355,14 @@ describe("/seo-heide linking, claims and structured data", () => {
     }
   });
 
-  it("leaves homepage hero and the existing money pages without a link to the new route yet", () => {
+  it("links the approved route crawlably from the shared service menu without changing the homepage hero", () => {
     const home = loadDoc("index.html");
     expect(home.querySelector("h1").textContent.replace(/\s+/g, " ").trim()).toBe("Wir bauen");
     for (const file of ["index.html", "webdesign-heide.html", "webdesign-dithmarschen.html"]) {
-      const hrefs = [...loadDoc(file).querySelectorAll("a[href]")].map((a) =>
-        a.getAttribute("href")
-      );
-      expect(hrefs).not.toContain("/seo-heide");
+      const doc = loadDoc(file);
+      const link = doc.querySelector('.tf-service-menu a[href="/seo-heide"]');
+      expect(link).not.toBeNull();
+      expect(link.textContent.replace(/\s+/g, " ").trim()).toContain("SEO Heide");
     }
   });
 });
