@@ -6,6 +6,7 @@ export const SITE_URL = "https://tigerflow.de";
 export const ROUTES = [
   {
     path: "/",
+    ogImage: "/og/home.png",
     outFile: "index.html",
     title: "Webdesign, SEO und KI-Automatisierung | TigerFlow",
     description:
@@ -15,6 +16,7 @@ export const ROUTES = [
   },
   {
     path: "/webdesign-heide",
+    ogImage: "/og/webdesign-heide.png",
     outFile: "webdesign-heide.html",
     title: "Webdesign Heide: Moderne Website ab 829 € | TigerFlow",
     description:
@@ -24,6 +26,7 @@ export const ROUTES = [
   },
   {
     path: "/webdesign-dithmarschen",
+    ogImage: "/og/webdesign-dithmarschen.png",
     outFile: "webdesign-dithmarschen.html",
     title: "Webdesign Dithmarschen: Website ab 829 € | TigerFlow",
     description:
@@ -36,6 +39,7 @@ export const ROUTES = [
   },
   {
     path: "/webdesign-schleswig-holstein",
+    ogImage: "/og/webdesign-schleswig-holstein.png",
     outFile: "webdesign-schleswig-holstein.html",
     title: "Webdesign Schleswig-Holstein: Website ab 829 € | TigerFlow",
     description:
@@ -48,6 +52,7 @@ export const ROUTES = [
   },
   {
     path: "/seo-heide",
+    ogImage: "/og/seo-heide.png",
     outFile: "seo-heide.html",
     title: "SEO Heide: Analyse & klarer Maßnahmenplan | TigerFlow",
     description:

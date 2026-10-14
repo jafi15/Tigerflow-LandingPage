@@ -15,7 +15,8 @@ const distDir = path.join(rootDir, "dist");
 const distSsrDir = path.join(rootDir, "dist-ssr");
 const ssrEntry = path.join(distSsrDir, "entry-server.js");
 
-const OG_IMAGE = `${SITE_URL}/tigerflow-mark.png`;
+// 1200x630 social cards, generated from design/og/og-card.html
+const DEFAULT_OG_IMAGE = "/og/home.png";
 
 // Only bestätigte (confirmed) data: matches the Impressum content 1:1.
 const ORG_JSON_LD = {
@@ -55,6 +56,7 @@ function buildHead({
   title,
   description,
   ogTitle = title,
+  ogImage = DEFAULT_OG_IMAGE,
   ogDescription = description,
   canonical,
   includeJsonLd,
@@ -76,13 +78,17 @@ function buildHead({
   if (canonical) {
     lines.push(`<meta property="og:url" content="${canonical}" />`);
   }
+  const ogImageUrl = `${SITE_URL}${ogImage}`;
   lines.push(
-    `<meta property="og:image" content="${OG_IMAGE}" />`,
+    `<meta property="og:image" content="${ogImageUrl}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(ogTitle)}" />`,
     `<meta property="og:locale" content="de_DE" />`,
-    `<meta name="twitter:card" content="summary" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeHtml(ogTitle)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(ogDescription)}" />`,
-    `<meta name="twitter:image" content="${OG_IMAGE}" />`,
+    `<meta name="twitter:image" content="${ogImageUrl}" />`,
     `<meta name="robots" content="${robots}" />`
   );
   if (includeJsonLd) {
@@ -159,6 +165,7 @@ async function main() {
       description: route.description,
       ogTitle: route.ogTitle,
       ogDescription: route.ogDescription,
+      ogImage: route.ogImage,
       canonical,
       includeJsonLd: route.path === "/",
       robots: "index, follow",
