@@ -36,6 +36,12 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
     </a>
   );
 
+  // In-page links (e.g. "/#service-webdesign" on the homepage) only scroll, so the
+  // page never reloads; close the menu explicitly so it doesn't cover the target.
+  const closeOnLinkClick = (event) => {
+    if (event.target.closest("a") && menuRef.current) menuRef.current.open = false;
+  };
+
   const openProjectCheck = (event) => {
     if (menuRef.current) menuRef.current.open = false;
     window.dispatchEvent(
@@ -50,7 +56,7 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
       <summary>
         Leistungen <ChevronDown size={13} aria-hidden="true" />
       </summary>
-      <div className="tf-service-panel">
+      <div className="tf-service-panel" onClick={closeOnLinkClick}>
         <div className="tf-service-intro">
           <span>LEISTUNGEN</span>
           <strong>Digitale Systeme mit einem klaren Einstieg.</strong>
