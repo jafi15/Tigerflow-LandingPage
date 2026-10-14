@@ -7,6 +7,7 @@ const EXPECTED_FILES = [
   "index.html",
   "webdesign-heide.html",
   "webdesign-dithmarschen.html",
+  "seo-heide.html",
   "impressum.html",
   "datenschutz.html",
   "agb.html",

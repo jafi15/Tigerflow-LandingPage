@@ -20,6 +20,7 @@ import { AGBPage } from "./components/AGBPage";
 import { NotFoundPage } from "./components/NotFoundPage";
 import { WebdesignHeidePage } from "./components/WebdesignHeidePage";
 import { WebdesignDithmarschenPage } from "./components/WebdesignDithmarschenPage";
+import { SeoHeidePage } from "./components/SeoHeidePage";
 import { ProjectCheck } from "./components/ProjectCheck";
 import { Analytics } from "@vercel/analytics/react";
 import { ROUTES } from "./routes.config";
@@ -36,6 +37,7 @@ export default function App({
   const isAGB = pathname === "/agb";
   const isWebdesignHeide = pathname === "/webdesign-heide";
   const isWebdesignDithmarschen = pathname === "/webdesign-dithmarschen";
+  const isSeoHeide = pathname === "/seo-heide";
   const isKnown = KNOWN_PATHS.has(pathname);
 
   useEffect(() => {
@@ -56,6 +58,8 @@ export default function App({
         <WebdesignHeidePage />
       ) : isWebdesignDithmarschen ? (
         <WebdesignDithmarschenPage />
+      ) : isSeoHeide ? (
+        <SeoHeidePage />
       ) : !isKnown ? (
         <><Navbar scrolled currentPath={pathname} /><NotFoundPage /></>
       ) : (

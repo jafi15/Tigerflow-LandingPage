@@ -69,4 +69,11 @@ describe("sitemap.xml", () => {
       expect(content).not.toContain(`<loc>${SITE_URL}${forbidden}</loc>`);
     }
   });
+
+  it("lists the approved SEO money page exactly once", () => {
+    const parsed = new XMLParser().parse(content);
+    const urls = parsed.urlset.url;
+    const locs = (Array.isArray(urls) ? urls : [urls]).map((u) => u.loc);
+    expect(locs.filter((loc) => loc === `${SITE_URL}/seo-heide`)).toHaveLength(1);
+  });
 });
