@@ -35,6 +35,18 @@ export const ROUTES = [
     priority: "0.8",
   },
   {
+    path: "/webdesign-schleswig-holstein",
+    outFile: "webdesign-schleswig-holstein.html",
+    title: "Webdesign Schleswig-Holstein: Website ab 829 € | TigerFlow",
+    description:
+      "Webdesign für Unternehmen in Schleswig-Holstein: responsive Website, Texte, technische SEO-Basis und klarer Anfrageweg – ab 829 € netto.",
+    ogTitle: "Webdesign für Unternehmen in Schleswig-Holstein | TigerFlow",
+    ogDescription:
+      "Moderne Unternehmenswebsites mit klarem Leistungsumfang, digitaler Zusammenarbeit und ausbaufähiger technischer Grundlage.",
+    changefreq: "monthly",
+    priority: "0.9",
+  },
+  {
     path: "/seo-heide",
     outFile: "seo-heide.html",
     title: "SEO Heide: Analyse & klarer Maßnahmenplan | TigerFlow",

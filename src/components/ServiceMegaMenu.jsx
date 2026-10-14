@@ -63,6 +63,7 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
               <span><strong>Website</strong><small>Auftritt & Anfragen</small></span>
             </div>
             <a href="/#service-webdesign"><span>Website im Überblick</span><ArrowRight size={13} aria-hidden="true" /></a>
+            {pageLink("/webdesign-schleswig-holstein", "Webdesign Schleswig-Holstein")}
             {pageLink("/webdesign-heide", "Webdesign Heide")}
             {pageLink("/webdesign-dithmarschen", "Webdesign Dithmarschen")}
           </section>
