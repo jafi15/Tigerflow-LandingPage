@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<title>TigerFlow Social Card</title>
+<!-- Social preview card (1200x630). Content comes from the URL hash as JSON:
+     og-card.html#{"eyebrow":"…","title":"…","chip":"…"}
+     Exported to public/og/*.png; see design/og/README.md. -->
+<style>
+  @font-face { font-family: 'Inter'; font-weight: 300 600; src: url(../../public/fonts/inter-latin-wght-normal.woff2) format('woff2-variations'); }
+  @font-face { font-family: 'Space Grotesk'; font-weight: 600 700; src: url(../../public/fonts/space-grotesk-latin-wght-normal.woff2) format('woff2-variations'); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; background: #070707; overflow: hidden; }
+  .card { position: relative; width: 1200px; height: 630px; padding: 64px 72px; display: flex; flex-direction: column; justify-content: space-between; color: #F8F5EF; font-family: 'Inter', sans-serif; isolation: isolate; }
+  .grid { position: absolute; z-index: -3; inset: 0; background-image: linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: radial-gradient(ellipse 90% 90% at 70% 40%, #000 30%, transparent 80%); mask-image: radial-gradient(ellipse 90% 90% at 70% 40%, #000 30%, transparent 80%); }
+  .glow { position: absolute; z-index: -2; width: 760px; height: 760px; right: -220px; top: -260px; background: radial-gradient(circle, rgba(255,122,0,.18), transparent 62%); }
+  .mark-bg { position: absolute; z-index: -1; right: -40px; bottom: -70px; width: 560px; opacity: .07; filter: grayscale(.2); }
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 16px; font-size: 30px; font-weight: 600; letter-spacing: .01em; }
+  .brand img { width: 56px; height: 43px; object-fit: cover; border-radius: 6px; }
+  .domain { color: #9C968D; font-size: 22px; font-weight: 500; letter-spacing: .02em; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 12px; color: #9C968D; font-size: 20px; font-weight: 600; letter-spacing: .14em; }
+  .eyebrow i { width: 10px; height: 10px; border-radius: 50%; background: #FF7A00; box-shadow: 0 0 16px rgba(255,122,0,.7); }
+  h1 { max-width: 900px; margin-top: 22px; font-family: 'Space Grotesk', sans-serif; font-size: 66px; font-weight: 650; line-height: 1.04; letter-spacing: -.04em; text-wrap: balance; }
+  h1.long { font-size: 58px; }
+  .bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .chip { display: inline-flex; align-items: center; gap: 14px; padding: 16px 26px; border-radius: 14px; background: #FF7A00; color: #111111; font-size: 26px; font-weight: 600; box-shadow: 0 12px 40px rgba(255,122,0,.25); }
+  .chip svg { width: 26px; height: 26px; }
+  .origin { color: #B8B3AB; font-size: 22px; }
+  .rule { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: linear-gradient(90deg, #FF7A00, rgba(255,122,0,.15) 70%, transparent); }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid"></div>
+    <div class="glow"></div>
+    <img class="mark-bg" src="../../public/tigerflow-mark.png" alt="" />
+    <div class="top">
+      <div class="brand"><img src="../../public/tigerflow-mark.png" alt="" /><span>TigerFlow</span></div>
+      <span class="domain">tigerflow.de</span>
+    </div>
+    <div>
+      <span class="eyebrow"><i></i><span id="eyebrow"></span></span>
+      <h1 id="title"></h1>
+    </div>
+    <div class="bottom">
+      <span class="chip"><span id="chip"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+      <span class="origin" id="origin">aus Heide · für Schleswig-Holstein</span>
+    </div>
+    <div class="rule"></div>
+  </div>
+  <script>
+    const data = JSON.parse(decodeURIComponent(location.hash.slice(1) || "{}"));
+    for (const key of ["eyebrow", "title", "chip", "origin"]) {
+      if (data[key]) document.getElementById(key).textContent = data[key];
+    }
+    if ((data.title || "").length > 48) document.getElementById("title").classList.add("long");
+  </script>
+</body>
+</html>
