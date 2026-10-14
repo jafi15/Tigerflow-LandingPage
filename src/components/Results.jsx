@@ -126,10 +126,9 @@ export function Results() {
                 </div>
                 <div
                   style={{
-                    fontFamily: "'Courier New',monospace",
-                    fontSize: "10px",
-                    color: C.textTer,
-                    letterSpacing: ".03em",
+                    fontSize: "12px",
+                    color: C.textSec,
+                    lineHeight: 1.45,
                   }}
                 >
                   {note}

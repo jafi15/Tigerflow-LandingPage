@@ -273,7 +273,7 @@ export function Services() {
 
             {/* Pulsing outer aura */}
             <div aria-hidden="true" style={{
-              position: "absolute", inset: -6, borderRadius: 22,
+              position: "absolute", top: -6, bottom: -6, left: "50%", width: "min(392px, calc(100% + 12px))", transform: "translateX(-50%)", borderRadius: 22,
               boxShadow: `0 0 70px ${C.accent}40, 0 0 140px ${C.accent}1c`,
               animation: "glowPulse 3.5s ease-in-out infinite",
               pointerEvents: "none", zIndex: 0,
@@ -312,7 +312,7 @@ export function Services() {
             }} />
 
             {/* Card */}
-            <div ref={tbRef} style={{
+            <div ref={tbRef} className="tigerbot-surface" style={{
               position: "relative", zIndex: 1,
               width: "100%",
               maxWidth: "380px",
@@ -454,7 +454,7 @@ export function Services() {
                       </svg>
                     </a>
                   ) : (
-                    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" style={{ position: "absolute", bottom: 20, right: 20, zIndex: 2 }}>
+                    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" style={{ position: "relative", zIndex: 2, display: "block", marginTop: 14, marginLeft: "auto" }}>
                       <path d="M5 12h14M12 5l7 7-7 7" stroke={C.accent} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                     </svg>
                   )}
@@ -489,7 +489,7 @@ export function Services() {
               <span style={{ fontSize: "clamp(22px,3vw,30px)", fontWeight: 700, color: C.accent, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-.025em", filter: `drop-shadow(0 0 14px ${C.accent}58)` }}>
                 {value}
               </span>
-              <span style={{ fontSize: 11, color: C.textTer, lineHeight: 1.5 }}>{label}</span>
+              <span style={{ fontSize: 12, color: C.textSec, lineHeight: 1.5 }}>{label}</span>
             </div>
           ))}
 
