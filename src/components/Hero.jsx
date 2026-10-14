@@ -94,7 +94,7 @@ export function Hero() {
             fontSize: "17px",
             fontWeight: 300,
             lineHeight: 1.72,
-            color: C.textTer,
+            color: C.textSec,
             letterSpacing: "-.005em",
             maxWidth: "420px",
             marginBottom: "40px",

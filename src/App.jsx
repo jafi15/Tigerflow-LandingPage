@@ -88,7 +88,7 @@ export default function App({
           <AutomationCalculator />
           <ExpertNote />
           <CTASection />
-          <Footer />
+          <Footer highContrast />
         </div>
       )}
       {pathname !== "/" && <ProjectCheck hideTrigger />}

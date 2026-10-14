@@ -1,6 +1,6 @@
 import { C } from "../theme";
 
-export function Footer() {
+export function Footer({ highContrast = false }) {
   const contactEmail = "service@tigerflow.de";
 
   return (
@@ -21,7 +21,7 @@ export function Footer() {
         style={{
           fontSize: "13px",
           fontWeight: 600,
-          color: C.textTer,
+          color: highContrast ? "#8F8F8F" : C.textTer,
           letterSpacing: ".04em",
         }}
       >
@@ -51,18 +51,18 @@ export function Footer() {
             href={href}
             style={{
               fontSize: "12px",
-              color: C.textTer,
+              color: highContrast ? C.textSec : C.textTer,
               textDecoration: "none",
               transition: "color .15s",
             }}
-            onMouseEnter={(e) => (e.target.style.color = C.textSec)}
-            onMouseLeave={(e) => (e.target.style.color = C.textTer)}
+            onMouseEnter={(e) => (e.target.style.color = highContrast ? C.textPri : C.textSec)}
+            onMouseLeave={(e) => (e.target.style.color = highContrast ? C.textSec : C.textTer)}
           >
             {label}
           </a>
         ))}
       </div>
-      <div style={{ fontSize: "12px", color: C.textDis }}>
+      <div style={{ fontSize: "12px", color: highContrast ? "#8A8A8A" : C.textDis }}>
         © 2026 TigerFlow. Alle Rechte vorbehalten.
       </div>
     </footer>

@@ -64,7 +64,7 @@ export function ComparisonSlider() {
               <span style={{ fontWeight: 600, textTransform: "uppercase", fontSize: "12px", letterSpacing: ".1em" }}>Manueller Prozess</span>
             </div>
             <h3 style={{ fontSize: "32px", color: C.textPri, marginBottom: "24px", maxWidth: "400px" }}>Zeitfressende Routineaufgaben</h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px", color: C.textTer }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", color: "#8F8F8F" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", opacity: 0.6 }}>
                 <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#E24B4A" }} />
                 <span>Leads manuell abtippen</span>
