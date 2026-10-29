@@ -6,6 +6,7 @@ import { renderToString } from "react-dom/server";
 import { JSDOM } from "jsdom";
 import App from "../src/App.jsx";
 import { ROUTES } from "../src/routes.config.js";
+import { preloadRoutePage } from "../src/routePages.js";
 
 class NoopIntersectionObserver {
   observe() {}
@@ -55,6 +56,8 @@ afterEach(() => {
 describe("React hydration of prerendered routes", () => {
   for (const route of ROUTES) {
     it(`${route.path} hydrates without recoverable errors or hydration warnings`, async () => {
+      // Like src/main.jsx: the route's code-split page chunk loads before rendering.
+      await preloadRoutePage(route.path);
       const serverHtml = renderToString(<App pathname={route.path} />);
       const dom = installDom(route.path, serverHtml);
       const consoleErrors = [];
