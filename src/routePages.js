@@ -32,6 +32,10 @@ export const ROUTE_PAGES = {
     source: "src/components/SeoHeidePage.jsx",
     load: () => import("./components/SeoHeidePage.jsx").then((m) => m.SeoHeidePage),
   },
+  "/preise": {
+    source: "src/components/PreisePage.jsx",
+    load: () => import("./components/PreisePage.jsx").then((m) => m.PreisePage),
+  },
   "/impressum": {
     source: "src/components/ImpressumPage.jsx",
     load: () => import("./components/ImpressumPage.jsx").then((m) => m.ImpressumPage),

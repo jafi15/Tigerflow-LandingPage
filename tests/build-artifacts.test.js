@@ -9,6 +9,7 @@ const EXPECTED_FILES = [
   "webdesign-dithmarschen.html",
   "seo-heide.html",
   "webdesign-schleswig-holstein.html",
+  "preise.html",
   "impressum.html",
   "datenschutz.html",
   "agb.html",

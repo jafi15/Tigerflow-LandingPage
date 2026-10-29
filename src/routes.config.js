@@ -61,6 +61,18 @@ export const ROUTES = [
     priority: "0.9",
   },
   {
+    path: "/preise",
+    outFile: "preise.html",
+    title: "Webdesign-Preise & Website-Kosten | TigerFlow",
+    description:
+      "Website ab 829 € netto: Leistungen, Zahlungsplan, Betreuung, SEO-Setup und Add-ons bei TigerFlow transparent erklärt. Festpreis nach Bedarfsklärung.",
+    ogTitle: "Webdesign-Preise und Leistungsumfang | TigerFlow",
+    ogDescription:
+      "Website ab 829 € netto mit klar definiertem Umfang, Zahlungsplan, optionaler Betreuung, SEO-Setup und Add-ons. Individuelles Festpreisangebot nach Bedarfsklärung.",
+    changefreq: "monthly",
+    priority: "0.8",
+  },
+  {
     path: "/impressum",
     outFile: "impressum.html",
     title: "Impressum | TigerFlow",
