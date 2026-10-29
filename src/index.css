@@ -365,6 +365,10 @@ body {
 }
 
 @media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   * {
     animation-duration: .01ms !important;
     transition-duration: .01ms !important;
