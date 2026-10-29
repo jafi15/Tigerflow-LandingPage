@@ -14,17 +14,10 @@ import { AutomationCalculator } from "./components/AutomationCalculator";
 import { ExpertNote } from "./components/ExpertNote";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
-import { ImpressumPage } from "./components/ImpressumPage";
-import { DatenschutzPage } from "./components/DatenschutzPage";
-import { AGBPage } from "./components/AGBPage";
-import { NotFoundPage } from "./components/NotFoundPage";
-import { WebdesignHeidePage } from "./components/WebdesignHeidePage";
-import { WebdesignDithmarschenPage } from "./components/WebdesignDithmarschenPage";
-import { WebdesignSchleswigHolsteinPage } from "./components/WebdesignSchleswigHolsteinPage";
-import { SeoHeidePage } from "./components/SeoHeidePage";
 import { ProjectCheck } from "./components/ProjectCheck";
 import { Analytics } from "@vercel/analytics/react";
 import { ROUTES } from "./routes.config";
+import { renderRoutePage } from "./routePages";
 import "./index.css";
 
 const KNOWN_PATHS = new Set(ROUTES.map((r) => r.path));
@@ -33,14 +26,11 @@ export default function App({
   pathname = typeof window !== "undefined" ? window.location.pathname : "/",
 }) {
   const [scrolled, setScrolled] = useState(false);
-  const isImpressum = pathname === "/impressum";
-  const isDatenschutz = pathname === "/datenschutz";
-  const isAGB = pathname === "/agb";
-  const isWebdesignHeide = pathname === "/webdesign-heide";
-  const isWebdesignDithmarschen = pathname === "/webdesign-dithmarschen";
-  const isWebdesignSchleswigHolstein = pathname === "/webdesign-schleswig-holstein";
-  const isSeoHeide = pathname === "/seo-heide";
   const isKnown = KNOWN_PATHS.has(pathname);
+  // Legal pages and the 404 page render below the shared navbar.
+  const withSharedNavbar = !isKnown || ["/impressum", "/datenschutz", "/agb"].includes(pathname);
+  // Every route except "/" is code-split; its chunk is preloaded before render.
+  const routePage = renderRoutePage(pathname);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -50,22 +40,11 @@ export default function App({
 
   return (
     <>
-      {isImpressum ? (
-        <><Navbar scrolled currentPath={pathname} /><ImpressumPage /></>
-      ) : isDatenschutz ? (
-        <><Navbar scrolled currentPath={pathname} /><DatenschutzPage /></>
-      ) : isAGB ? (
-        <><Navbar scrolled currentPath={pathname} /><AGBPage /></>
-      ) : isWebdesignHeide ? (
-        <WebdesignHeidePage />
-      ) : isWebdesignDithmarschen ? (
-        <WebdesignDithmarschenPage />
-      ) : isWebdesignSchleswigHolstein ? (
-        <WebdesignSchleswigHolsteinPage />
-      ) : isSeoHeide ? (
-        <SeoHeidePage />
-      ) : !isKnown ? (
-        <><Navbar scrolled currentPath={pathname} /><NotFoundPage /></>
+      {withSharedNavbar ? (
+        <><Navbar scrolled currentPath={pathname} />{routePage}</>
+      ) : routePage ? (
+        // Money pages bring their own header.
+        routePage
       ) : (
         <div
           style={{

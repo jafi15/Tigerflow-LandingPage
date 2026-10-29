@@ -8,6 +8,7 @@ import { readFile, writeFile, rm, access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ROUTES, SITE_URL } from "../src/routes.config.js";
+import { NOT_FOUND_PAGE, ROUTE_PAGES } from "../src/routePages.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -126,6 +127,37 @@ function injectPage(template, { head, bodyHtml, includeCriticalFontPreload = fal
   return withHead.replace(rootMarker, `<div id="root">${bodyHtml}</div>`);
 }
 
+// Route-level code splitting: a route's page component lives in its own chunk.
+// Link that chunk's CSS (so the prerendered HTML is styled before any JS runs)
+// and modulepreload its JS (so hydration is not delayed by a request waterfall).
+function pageAssetTags(manifest, source) {
+  if (!source) return "";
+  const css = new Set();
+  const js = new Set();
+  const visit = (key) => {
+    const chunk = manifest[key];
+    if (!chunk || chunk.isEntry) return;
+    if (js.has(chunk.file)) return;
+    js.add(chunk.file);
+    for (const file of chunk.css ?? []) css.add(file);
+    for (const imported of chunk.imports ?? []) visit(imported);
+  };
+  if (!manifest[source]) {
+    throw new Error(`Vite manifest has no chunk for code-split page ${source}`);
+  }
+  visit(source);
+  return [
+    ...[...css].map((file) => `<link rel="stylesheet" crossorigin href="/${file}">`),
+    ...[...js].map((file) => `<link rel="modulepreload" crossorigin href="/${file}">`),
+  ].join("\n    ");
+}
+
+function injectPageAssets(html, tags) {
+  if (!tags) return html;
+  if (!html.includes("</head>")) throw new Error("dist/index.html is missing </head>");
+  return html.replace("</head>", `  ${tags}\n  </head>`);
+}
+
 function assertRenderedPage(html, outFile) {
   const h1Count = (html.match(/<h1[ >]/g) || []).length;
   if (h1Count !== 1) {
@@ -156,6 +188,8 @@ async function main() {
   const { render } = await import(pathToFileURL(ssrEntry).href);
 
   const template = await readFile(path.join(distDir, "index.html"), "utf8");
+  const manifestPath = path.join(distDir, ".vite", "manifest.json");
+  const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 
   for (const route of ROUTES) {
     const canonical = `${SITE_URL}${route.path === "/" ? "/" : route.path}`;
@@ -170,11 +204,14 @@ async function main() {
       includeJsonLd: route.path === "/",
       robots: "index, follow",
     });
-    const page = injectPage(template, {
-      head,
-      bodyHtml,
-      includeCriticalFontPreload: route.path === "/",
-    });
+    const page = injectPageAssets(
+      injectPage(template, {
+        head,
+        bodyHtml,
+        includeCriticalFontPreload: route.path === "/",
+      }),
+      pageAssetTags(manifest, ROUTE_PAGES[route.path]?.source)
+    );
     const outPath = path.join(distDir, route.outFile);
     assertRenderedPage(page, route.outFile);
     await writeFile(outPath, page, "utf8");
@@ -192,10 +229,13 @@ async function main() {
     includeJsonLd: false,
     robots: "noindex, follow",
   });
-  const notFoundPage = injectPage(template, {
-    head: notFoundHead,
-    bodyHtml: notFoundBody,
-  });
+  const notFoundPage = injectPageAssets(
+    injectPage(template, {
+      head: notFoundHead,
+      bodyHtml: notFoundBody,
+    }),
+    pageAssetTags(manifest, NOT_FOUND_PAGE.source)
+  );
   assertRenderedPage(notFoundPage, "404.html");
   await writeFile(path.join(distDir, "404.html"), notFoundPage, "utf8");
   console.log("prerendered 404 -> dist/404.html");
@@ -223,6 +263,8 @@ async function main() {
   console.log("generated dist/sitemap.xml");
 
   await rm(distSsrDir, { recursive: true, force: true });
+  // The Vite manifest is a build-time input only; don't deploy it.
+  await rm(path.join(distDir, ".vite"), { recursive: true, force: true });
 }
 
 main().catch((err) => {

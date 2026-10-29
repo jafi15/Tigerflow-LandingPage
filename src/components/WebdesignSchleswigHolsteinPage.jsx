@@ -489,7 +489,7 @@ function MobileBar({ visible }) {
       aria-hidden={!visible || undefined}
     >
       <div className="wsh-mobile-bar-price">
-        <b>Websites ab 829 €</b>
+        <b>Websites ab 829{"\u00a0"}€</b>
         <span>netto zzgl. USt.</span>
       </div>
       <ProjectCheckButton>
