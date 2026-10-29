@@ -9,7 +9,8 @@ export function PositioningIntro() {
       style={{ padding: "72px 48px 32px", maxWidth: "1100px", margin: "0 auto" }}
     >
       <div
-        className="grid-2"
+        id="service-seo"
+        className="grid-2 service-anchor"
         style={{
           display: "grid",
           gridTemplateColumns: "minmax(0, .9fr) minmax(0, 1.1fr)",

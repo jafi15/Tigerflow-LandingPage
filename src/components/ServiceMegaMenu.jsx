@@ -78,7 +78,7 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
               <Compass size={16} aria-hidden="true" />
               <span><strong>SEO</strong><small>Sichtbarkeit & Nachfrage</small></span>
             </div>
-            <a href="/#leistungen"><span>SEO im Überblick</span><ArrowRight size={13} aria-hidden="true" /></a>
+            <a href="/#service-seo"><span>SEO im Überblick</span><ArrowRight size={13} aria-hidden="true" /></a>
             {pageLink("/seo-heide", "SEO Heide")}
             <span className="tf-service-preview"><span>SEO-Betreuung</span><small>Seite folgt</small></span>
           </section>
@@ -87,7 +87,7 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
               <Sparkles size={16} aria-hidden="true" />
               <span><strong>KI & Automatisierung</strong><small>Prozesse & Entlastung</small></span>
             </div>
-            <a href="/#leistungen"><span>KI im Überblick</span><ArrowRight size={13} aria-hidden="true" /></a>
+            <a href="/#service-tigerbot"><span>KI im Überblick</span><ArrowRight size={13} aria-hidden="true" /></a>
             <span className="tf-service-preview"><span>TigerBot & TelefonBot</span><small>Seite folgt</small></span>
             <span className="tf-service-preview"><span>CRM-Automatisierung</span><small>Seite folgt</small></span>
           </section>
