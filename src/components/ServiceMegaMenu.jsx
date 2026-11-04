@@ -73,6 +73,7 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
             {pageLink("/webdesign-heide", "Webdesign Heide")}
             {pageLink("/webdesign-dithmarschen", "Webdesign Dithmarschen")}
             {pageLink("/preise", "Preise und Leistungsumfang")}
+            {pageLink("/website-betreuung", "Website-Betreuung")}
           </section>
           <section>
             <div className="tf-service-group-title">
