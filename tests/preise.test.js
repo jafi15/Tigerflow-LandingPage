@@ -404,7 +404,7 @@ describe("/preise process and FAQ", () => {
 });
 
 describe("/preise linking, claims and structured data", () => {
-  it("links only to published routes, never to /website-betreuung or external hosts", () => {
+  it("links only to published routes and never to external hosts", () => {
     const doc = loadDoc();
     const published = new Set(ROUTES.map((r) => r.path));
     for (const a of doc.getElementById("root").querySelectorAll("a[href]")) {
@@ -418,7 +418,10 @@ describe("/preise linking, claims and structured data", () => {
         expect(href).toMatch(/^mailto:/);
       }
     }
-    expect(doc.body.innerHTML).not.toContain("/website-betreuung");
+    // The care section links descriptively to the detail page /website-betreuung.
+    const care = [...doc.querySelectorAll('#betreuung a[href="/website-betreuung"]')];
+    expect(care).toHaveLength(1);
+    expect(clean(care[0])).toBe("Website-Betreuung und Wartungsumfang ansehen");
     for (const img of doc.getElementById("root").querySelectorAll("img")) {
       expect(img.getAttribute("src")).toBe("/tigerflow-mark.png");
     }

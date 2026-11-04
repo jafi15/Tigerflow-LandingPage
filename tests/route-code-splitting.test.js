@@ -13,6 +13,7 @@ const MONEY_PAGES = [
   { path: "/webdesign-schleswig-holstein", chunk: "WebdesignSchleswigHolsteinPage", prefix: "wsh-", file: "webdesign-schleswig-holstein.html" },
   { path: "/seo-heide", chunk: "SeoHeidePage", prefix: "sh-", file: "seo-heide.html" },
   { path: "/preise", chunk: "PreisePage", prefix: "pr-", file: "preise.html" },
+  { path: "/website-betreuung", chunk: "WebsiteBetreuungPage", prefix: "wb-", file: "website-betreuung.html" },
 ];
 
 const html = (file) => readFileSync(path.join(DIST_DIR, file), "utf8");

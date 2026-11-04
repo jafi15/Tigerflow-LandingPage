@@ -62,7 +62,6 @@ describe("sitemap.xml", () => {
       expect(loc.toLowerCase()).not.toContain("preview");
     }
     for (const forbidden of [
-      "/website-betreuung",
       "/ueber-uns",
       "/kontakt",
     ]) {
@@ -82,6 +81,13 @@ describe("sitemap.xml", () => {
     const urls = parsed.urlset.url;
     const locs = (Array.isArray(urls) ? urls : [urls]).map((u) => u.loc);
     expect(locs.filter((loc) => loc === `${SITE_URL}/preise`)).toHaveLength(1);
+  });
+
+  it("lists the /website-betreuung page exactly once", () => {
+    const parsed = new XMLParser().parse(content);
+    const urls = parsed.urlset.url;
+    const locs = (Array.isArray(urls) ? urls : [urls]).map((u) => u.loc);
+    expect(locs.filter((loc) => loc === `${SITE_URL}/website-betreuung`)).toHaveLength(1);
   });
 
   it("lists the Webdesign Schleswig-Holstein money page exactly once", () => {

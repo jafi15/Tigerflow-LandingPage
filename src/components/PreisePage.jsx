@@ -892,6 +892,11 @@ export function PreisePage() {
           <ul className="pr-terms" data-pr-reveal>
             {planTerms.map((term) => <li key={term}>{term}</li>)}
           </ul>
+          <a className="pr-link-row" href="/website-betreuung" data-pr-reveal>
+            <CalendarCheck size={18} aria-hidden="true" />
+            <span>Website-Betreuung und Wartungsumfang ansehen</span>
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </section>
 
         <section id="seo" className="pr-section">

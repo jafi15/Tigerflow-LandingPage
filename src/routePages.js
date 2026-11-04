@@ -36,6 +36,11 @@ export const ROUTE_PAGES = {
     source: "src/components/PreisePage.jsx",
     load: () => import("./components/PreisePage.jsx").then((m) => m.PreisePage),
   },
+  "/website-betreuung": {
+    source: "src/components/WebsiteBetreuungPage.jsx",
+    load: () =>
+      import("./components/WebsiteBetreuungPage.jsx").then((m) => m.WebsiteBetreuungPage),
+  },
   "/impressum": {
     source: "src/components/ImpressumPage.jsx",
     load: () => import("./components/ImpressumPage.jsx").then((m) => m.ImpressumPage),

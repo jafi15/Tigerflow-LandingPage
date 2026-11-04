@@ -6,6 +6,7 @@ import { WebdesignDithmarschenPage } from "./components/WebdesignDithmarschenPag
 import { WebdesignSchleswigHolsteinPage } from "./components/WebdesignSchleswigHolsteinPage";
 import { SeoHeidePage } from "./components/SeoHeidePage";
 import { PreisePage } from "./components/PreisePage";
+import { WebsiteBetreuungPage } from "./components/WebsiteBetreuungPage";
 import { ImpressumPage } from "./components/ImpressumPage";
 import { DatenschutzPage } from "./components/DatenschutzPage";
 import { AGBPage } from "./components/AGBPage";
@@ -19,6 +20,7 @@ registerRoutePages({
   "/webdesign-schleswig-holstein": WebdesignSchleswigHolsteinPage,
   "/seo-heide": SeoHeidePage,
   "/preise": PreisePage,
+  "/website-betreuung": WebsiteBetreuungPage,
   "/impressum": ImpressumPage,
   "/datenschutz": DatenschutzPage,
   "/agb": AGBPage,

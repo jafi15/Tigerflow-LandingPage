@@ -73,6 +73,18 @@ export const ROUTES = [
     priority: "0.8",
   },
   {
+    path: "/website-betreuung",
+    outFile: "website-betreuung.html",
+    title: "Website-Betreuung & Wartung ab 49 € | TigerFlow",
+    description:
+      "Website-Betreuung ab 49 € netto: monatliche Wartung, Änderungen und E-Mail-Support mit klaren Konditionen. Pakete und Grenzen im Überblick.",
+    ogTitle: "Website-Betreuung und Wartung mit klaren Grenzen | TigerFlow",
+    ogDescription:
+      "Drei Website-Servicepakete ab 49 € netto pro Monat: monatliche technische Prüfroutine, kleinere Änderungen im Kontingent und E-Mail-Support – Konditionen und Grenzen transparent.",
+    changefreq: "monthly",
+    priority: "0.8",
+  },
+  {
     path: "/impressum",
     outFile: "impressum.html",
     title: "Impressum | TigerFlow",
