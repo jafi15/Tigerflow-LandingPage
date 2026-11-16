@@ -1,6 +1,13 @@
 import { C } from "../theme";
 import { Eyebrow } from "./Eyebrow";
 
+const linkStyle = {
+  color: C.textPri,
+  textDecoration: "underline",
+  textDecorationColor: C.accent,
+  textUnderlineOffset: "4px",
+};
+
 export function PositioningIntro() {
   return (
     <section
@@ -59,6 +66,25 @@ export function PositioningIntro() {
             }}
           >
             Wir begleiten Unternehmen in Heide, Dithmarschen und Schleswig-Holstein. Spezialisierte Web-, SEO- und KI-Projekte setzen wir auch deutschlandweit um.
+          </p>
+          <p
+            style={{
+              fontSize: "14px",
+              lineHeight: 1.75,
+              color: C.textSec,
+              maxWidth: "510px",
+              marginTop: "12px",
+            }}
+          >
+            Für Unternehmen vor Ort: Details zu Umfang und Preisen finden Sie unter{" "}
+            <a href="/webdesign-heide" style={linkStyle}>
+              Webdesign in Heide
+            </a>{" "}
+            und{" "}
+            <a href="/seo-heide" style={linkStyle}>
+              SEO in Heide
+            </a>
+            .
           </p>
         </div>
       </div>
