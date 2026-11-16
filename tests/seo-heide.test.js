@@ -262,6 +262,19 @@ describe("/seo-heide linking, claims and structured data", () => {
     expect(webdesignLink?.textContent.trim().length).toBeGreaterThan(10);
   });
 
+  it("points projects beyond the local Heide focus to the statewide SEO page with one descriptive link", () => {
+    const doc = getDoc();
+    const links = [...doc.querySelectorAll('a[href="/seo-schleswig-holstein"]')];
+    expect(links).toHaveLength(1);
+    expect(links[0].closest("main")).not.toBeNull();
+    const anchor = links[0].textContent.replace(/\s+/g, " ").trim();
+    expect(anchor).toBe("SEO für Schleswig-Holstein: Strategie für mehrere Regionen und Standorte");
+    // The local role stays untouched: local H1, local sections and the Heide web design link.
+    expect(doc.querySelector("h1").textContent).toMatch(/SEO in Heide/);
+    expect(doc.querySelector("#local-seo h2").textContent).toMatch(/Lokale Sichtbarkeit/);
+    expect(doc.querySelector('main a[href="/webdesign-heide"]')).not.toBeNull();
+  });
+
   it("loads no external hosts and no assets beyond the existing brand mark", () => {
     const root = getDoc().getElementById("root");
     for (const a of root.querySelectorAll("a[href]")) {

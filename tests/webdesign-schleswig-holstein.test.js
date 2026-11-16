@@ -409,16 +409,26 @@ describe("/webdesign-schleswig-holstein linking, claims and keywords", () => {
       "/webdesign-heide",
       "/webdesign-dithmarschen",
       "/seo-heide",
+      "/seo-schleswig-holstein",
       "/impressum",
       "/datenschutz",
     ]) {
       expect(hrefs, href).toContain(href);
     }
-    for (const href of ["/webdesign-heide", "/webdesign-dithmarschen", "/seo-heide"]) {
+    for (const href of ["/webdesign-heide", "/webdesign-dithmarschen", "/seo-schleswig-holstein"]) {
       const link = doc.querySelector(`main a[href="${href}"]`);
       expect(link, href).not.toBeNull();
       expect(link.textContent.trim().length).toBeGreaterThan(14);
     }
+    // Strategic SEO beyond the technical base belongs to the statewide SEO page;
+    // the local Heide SEO page stays reachable through the shared service menu only.
+    const seoLinks = [...doc.querySelectorAll('main a[href="/seo-schleswig-holstein"]')];
+    expect(seoLinks).toHaveLength(1);
+    expect(seoLinks[0].closest("#ausbau")).not.toBeNull();
+    expect(clean(seoLinks[0])).toBe(
+      "SEO für Schleswig-Holstein: Keyword-Map, Seitenarchitektur und Maßnahmenplan"
+    );
+    expect(doc.querySelector('main a[href="/seo-heide"]')).toBeNull();
     expect(doc.querySelector('.wsh-logo, header a[href="/"]')).not.toBeNull();
   });
 

@@ -76,6 +76,13 @@ describe("sitemap.xml", () => {
     expect(locs.filter((loc) => loc === `${SITE_URL}/seo-heide`)).toHaveLength(1);
   });
 
+  it("lists the SEO Schleswig-Holstein money page exactly once", () => {
+    const parsed = new XMLParser().parse(content);
+    const urls = parsed.urlset.url;
+    const locs = (Array.isArray(urls) ? urls : [urls]).map((u) => u.loc);
+    expect(locs.filter((loc) => loc === `${SITE_URL}/seo-schleswig-holstein`)).toHaveLength(1);
+  });
+
   it("lists the approved /preise page exactly once", () => {
     const parsed = new XMLParser().parse(content);
     const urls = parsed.urlset.url;

@@ -947,9 +947,9 @@ export function PreisePage() {
               </p>
             </li>
           </ol>
-          <a className="pr-link-row" href="/seo-heide" data-pr-reveal>
+          <a className="pr-link-row" href="/seo-schleswig-holstein" data-pr-reveal>
             <Search size={18} aria-hidden="true" />
-            <span>SEO-Setup und Vorgehen im Detail ansehen</span>
+            <span>SEO für Schleswig-Holstein: Setup und Vorgehen im Detail</span>
             <ArrowRight size={16} aria-hidden="true" />
           </a>
         </section>
