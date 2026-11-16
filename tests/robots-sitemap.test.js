@@ -81,6 +81,7 @@ describe("sitemap.xml", () => {
     const urls = parsed.urlset.url;
     const locs = (Array.isArray(urls) ? urls : [urls]).map((u) => u.loc);
     expect(locs.filter((loc) => loc === `${SITE_URL}/seo-schleswig-holstein`)).toHaveLength(1);
+    expect(locs.filter((loc) => loc === `${SITE_URL}/seo-betreuung`)).toHaveLength(1);
   });
 
   it("lists the approved /preise page exactly once", () => {

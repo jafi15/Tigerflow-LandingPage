@@ -82,7 +82,8 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
             </div>
             <a href="/#service-seo"><span>SEO im Überblick</span><ArrowRight size={13} aria-hidden="true" /></a>
             {pageLink("/seo-heide", "SEO Heide")}
-            <span className="tf-service-preview"><span>SEO-Betreuung</span><small>Seite folgt</small></span>
+            {pageLink("/seo-schleswig-holstein", "SEO Schleswig-Holstein")}
+            {pageLink("/seo-betreuung", "SEO-Betreuung")}
           </section>
           <section>
             <div className="tf-service-group-title">

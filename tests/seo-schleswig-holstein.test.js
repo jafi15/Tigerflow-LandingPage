@@ -787,28 +787,29 @@ describe("/seo-schleswig-holstein internal linking", () => {
     }
   });
 
-  it("receives inbound links only from /seo-heide, /webdesign-schleswig-holstein and /preise", () => {
+  it("receives inbound links only from /seo-heide, /webdesign-schleswig-holstein, /preise and /seo-betreuung", () => {
     const linking = ROUTES.filter(
-      (r) => r.path !== PATH && loadDoc(r.outFile).querySelector(`a[href="${PATH}"]`)
+      (r) => r.path !== PATH && loadDoc(r.outFile).querySelector(`main a[href="${PATH}"]`)
     ).map((r) => r.path);
-    expect(linking.sort()).toEqual(["/preise", "/seo-heide", "/webdesign-schleswig-holstein"]);
-    expect(loadDoc("404.html").querySelector(`a[href="${PATH}"]`)).toBeNull();
+    expect(linking.sort()).toEqual(["/preise", "/seo-betreuung", "/seo-heide", "/webdesign-schleswig-holstein"]);
   });
 
   it("leaves the homepage, /webdesign-heide and the shared service menu untouched", () => {
     const home = loadDoc("index.html");
     expect(clean(home.querySelector("h1"))).toBe("Wir bauen");
     expect(home.title).toBe("Webdesign, SEO und KI-Automatisierung | TigerFlow");
-    expect(readFileSync(path.join(DIST_DIR, "index.html"), "utf8")).not.toContain(PATH);
-    expect(readFileSync(path.join(DIST_DIR, "webdesign-heide.html"), "utf8")).not.toContain(PATH);
-    for (const file of ["ServiceMegaMenu.jsx", "Hero.jsx", "PositioningIntro.jsx", "WebdesignHeidePage.jsx"]) {
+    for (const file of ["index.html", "webdesign-heide.html"]) {
+      const links = [...loadDoc(file).querySelectorAll(`a[href="${PATH}"]`)];
+      expect(links.every((a) => a.closest(".tf-service-menu")), file).toBe(true);
+    }
+    for (const file of ["Hero.jsx", "PositioningIntro.jsx", "WebdesignHeidePage.jsx"]) {
       const source = readFileSync(path.join(process.cwd(), "src/components", file), "utf8");
       expect(source, file).not.toContain("seo-schleswig-holstein");
     }
-    // The menu is embedded unchanged: it lists the local SEO page and not this page.
+    // The shared menu lists the local SEO page and this page.
     const menu = loadDoc().querySelector(".tf-service-menu");
     expect(menu.querySelector('a[href="/seo-heide"]')).not.toBeNull();
-    expect(menu.querySelector(`a[href="${PATH}"]`)).toBeNull();
+    expect(menu.querySelector(`a[href="${PATH}"]`).getAttribute("aria-current")).toBe("page");
   });
 });
 

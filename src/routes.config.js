@@ -73,6 +73,18 @@ export const ROUTES = [
     priority: "0.9",
   },
   {
+    path: "/seo-betreuung",
+    outFile: "seo-betreuung.html",
+    title: "Laufende SEO-Betreuung für Unternehmen | TigerFlow",
+    description:
+      "Laufende SEO-Betreuung mit Monitoring, Onpage-Optimierung, interner Verlinkung und Monatsbericht. Umfang und Preis werden individuell vereinbart.",
+    ogTitle: "Laufende SEO-Betreuung mit klarem Leistungsrahmen | TigerFlow",
+    ogDescription:
+      "Monitoring, technische Kontrollen, Onpage-Optimierung, interne Verlinkung und Monatsbericht. Voraussetzung ist ein SEO-Setup oder eine geprüfte gleichwertige Analyse.",
+    changefreq: "monthly",
+    priority: "0.9",
+  },
+  {
     path: "/preise",
     outFile: "preise.html",
     title: "Webdesign-Preise & Website-Kosten | TigerFlow",

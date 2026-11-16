@@ -880,6 +880,10 @@ export function SeoSchleswigHolsteinPage() {
             eine Mindestlaufzeit von sechs Monaten. Offpage-Leistungen und Fremdkosten werden
             separat geprüft, vereinbart und ausgewiesen.
           </p>
+          <a className="ssh-link-row" href="/seo-betreuung" data-ssh-reveal>
+            <span>Monitoring, Onpage-Optimierung und Monatsbericht im Detail</span>
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </section>
 
         <section id="website" className="ssh-section ssh-band">

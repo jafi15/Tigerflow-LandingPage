@@ -952,6 +952,11 @@ export function PreisePage() {
             <span>SEO für Schleswig-Holstein: Setup und Vorgehen im Detail</span>
             <ArrowRight size={16} aria-hidden="true" />
           </a>
+          <a className="pr-link-row" href="/seo-betreuung" data-pr-reveal>
+            <Search size={18} aria-hidden="true" />
+            <span>Laufende SEO-Betreuung und Tarifrahmen ansehen</span>
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </section>
 
         <section id="add-ons" className="pr-section pr-band">
