@@ -16,12 +16,20 @@ describe("/webdesign-heide money page", () => {
     expect(route).toEqual(
       expect.objectContaining({
         outFile: "webdesign-heide.html",
-        title: "Webdesign Heide: Moderne Website ab 829 € | TigerFlow",
+        title: "Webdesign Heide: Website ab 829 € | TigerFlow",
         description:
-          "Professionelles Webdesign aus Heide: responsive Unternehmenswebsite, Texte, technische SEO-Basis und Anfragefunnel – ab 829 € netto.",
+          "Webdesign aus Heide für Unternehmen: responsive Website, Texte, technische SEO-Basis und klarer Anfrageweg – ab 829 € netto.",
       })
     );
     expect(existsSync(path.join(DIST_DIR, route.outFile))).toBe(true);
+
+    const document = new JSDOM(
+      readFileSync(path.join(DIST_DIR, route.outFile), "utf8")
+    ).window.document;
+    expect(document.title).toBe("Webdesign Heide: Website ab 829 € | TigerFlow");
+    expect(document.querySelector('meta[name="description"]')?.getAttribute("content")).toBe(
+      "Webdesign aus Heide für Unternehmen: responsive Website, Texte, technische SEO-Basis und klarer Anfrageweg – ab 829 € netto."
+    );
   });
 
   it("renders the confirmed offer and a qualified project CTA in initial HTML", () => {
@@ -37,6 +45,23 @@ describe("/webdesign-heide money page", () => {
     expect(text).toContain("Unverbindliche Projektanfrage starten");
     expect(text).toContain("Keine pauschale Dauer");
     expect(text).not.toMatch(/garantiert|Platz 1|mehr Umsatz|mehr Kunden/i);
+  });
+
+  it("links to SEO in Heide as a separate expansion step, not as part of the website price", () => {
+    const html = readFileSync(path.join(DIST_DIR, route.outFile), "utf8");
+    const document = new JSDOM(html).window.document;
+    const link = document.querySelector('main p a[href="/seo-heide"]');
+    const context = link?.closest("p")?.textContent.replace(/\s+/g, " ").trim();
+
+    expect(link?.textContent.replace(/\s+/g, " ").trim()).toBe(
+      "SEO in Heide mit Analyse und Maßnahmenplan"
+    );
+    expect(link?.getAttribute("rel") ?? "").not.toMatch(/nofollow/);
+    expect(link?.closest(".wdh-system-section")).not.toBeNull();
+    expect(context).toContain("optionale Leistungen");
+    expect(context).toContain("projektbezogen vereinbart. SEO ist");
+    expect(context).toContain("nicht im Website-Preis enthalten");
+    expect(document.querySelectorAll('main a[href="/seo-heide"]')).toHaveLength(1);
   });
 
   it("has a self-referencing canonical and appears in the sitemap", () => {

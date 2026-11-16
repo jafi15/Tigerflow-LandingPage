@@ -22,6 +22,20 @@ describe("homepage positioning introduction", () => {
     expect(text).toContain("deutschlandweit");
   });
 
+  it("links descriptively to the Heide money pages from crawlable body copy", () => {
+    const section = homepage.querySelector("#positionierung");
+    const linkText = (href) =>
+      section
+        ?.querySelector(`p a[href="${href}"]`)
+        ?.textContent.replace(/\s+/g, " ")
+        .trim();
+
+    expect(linkText("/webdesign-heide")).toBe("Webdesign in Heide");
+    expect(linkText("/seo-heide")).toBe("SEO in Heide");
+    expect(section?.querySelectorAll("a")).toHaveLength(2);
+    expect(section?.querySelector('a[rel~="nofollow"]')).toBeNull();
+  });
+
   it("places the introduction between the restored hero and problem sections", () => {
     const positioning = homepage.querySelector("#positionierung");
     const problem = homepage.querySelector("#problem");

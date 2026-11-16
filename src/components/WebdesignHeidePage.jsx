@@ -275,6 +275,14 @@ export function WebdesignHeidePage() {
             </div>
             <p className="wdh-system-disclaimer">
               SEO, Terminbuchung, E-Mail-Follow-up, Website-KI und Automatisierungen sind optionale Leistungen und werden projektbezogen vereinbart.
+              SEO ist nicht im Website-Preis enthalten – als eigenständigen Ausbauschritt bietet TigerFlow{" "}
+              <a
+                href="/seo-heide"
+                style={{ color: "#F8F5EF", textDecoration: "underline", textUnderlineOffset: "3px" }}
+              >
+                SEO in Heide mit Analyse und Maßnahmenplan
+              </a>{" "}
+              an.
             </p>
           </div>
         </section>
