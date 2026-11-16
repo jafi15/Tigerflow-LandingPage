@@ -264,7 +264,7 @@ describe("/seo-heide linking, claims and structured data", () => {
 
   it("points projects beyond the local Heide focus to the statewide SEO page with one descriptive link", () => {
     const doc = getDoc();
-    const links = [...doc.querySelectorAll('a[href="/seo-schleswig-holstein"]')];
+    const links = [...doc.querySelectorAll('main a[href="/seo-schleswig-holstein"]')];
     expect(links).toHaveLength(1);
     expect(links[0].closest("main")).not.toBeNull();
     const anchor = links[0].textContent.replace(/\s+/g, " ").trim();

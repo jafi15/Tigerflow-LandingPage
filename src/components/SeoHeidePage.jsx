@@ -739,6 +739,11 @@ export function SeoHeidePage() {
             wird, gilt eine Mindestlaufzeit von sechs Monaten. Offpage-Leistungen werden separat
             behandelt.
           </p>
+          <a className="sh-link-row" href="/seo-betreuung" data-sh-reveal>
+            <Compass size={18} aria-hidden="true" />
+            <span>SEO nach dem Setup kontinuierlich weiterentwickeln</span>
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </section>
 
         <section id="webdesign" className="sh-section sh-band">

@@ -13,6 +13,7 @@ const MONEY_PAGES = [
   { path: "/webdesign-schleswig-holstein", chunk: "WebdesignSchleswigHolsteinPage", prefix: "wsh-", file: "webdesign-schleswig-holstein.html" },
   { path: "/seo-heide", chunk: "SeoHeidePage", prefix: "sh-", file: "seo-heide.html" },
   { path: "/seo-schleswig-holstein", chunk: "SeoSchleswigHolsteinPage", prefix: "ssh-", file: "seo-schleswig-holstein.html" },
+  { path: "/seo-betreuung", chunk: "SeoBetreuungPage", prefix: "sb-", file: "seo-betreuung.html" },
   { path: "/preise", chunk: "PreisePage", prefix: "pr-", file: "preise.html" },
   { path: "/website-betreuung", chunk: "WebsiteBetreuungPage", prefix: "wb-", file: "website-betreuung.html" },
 ];
