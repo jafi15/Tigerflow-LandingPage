@@ -335,8 +335,11 @@ describe("/preise SEO staging and add-ons", () => {
       "individuell kalkuliert",
     ]);
     expect(text).toMatch(/Festpreis richtet sich nach Umfang, Websitegröße, Markt und Wettbewerb/);
-    const link = loadDoc().querySelector('#seo a[href="/seo-heide"]');
-    expect(link && clean(link).length).toBeGreaterThan(14);
+    const links = [...loadDoc().querySelectorAll('#seo a[href="/seo-schleswig-holstein"]')];
+    expect(links).toHaveLength(1);
+    expect(clean(links[0])).toBe("SEO für Schleswig-Holstein: Setup und Vorgehen im Detail");
+    // /seo-heide stays linked only where the local Heide context is meant (service menu).
+    expect(loadDoc().querySelector('main a[href="/seo-heide"]')).toBeNull();
   });
 
   it("names no monthly amount for ongoing SEO care", () => {

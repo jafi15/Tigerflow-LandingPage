@@ -25,6 +25,7 @@ describe("production-like dist HTTP behavior", () => {
     "/webdesign-heide",
     "/webdesign-dithmarschen",
     "/seo-heide",
+    "/seo-schleswig-holstein",
     "/webdesign-schleswig-holstein",
     "/preise",
     "/website-betreuung",

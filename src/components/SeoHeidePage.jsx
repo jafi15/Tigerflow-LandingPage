@@ -676,6 +676,11 @@ export function SeoHeidePage() {
             TigerFlow sitzt in Heide. Ob wir uns digital oder persönlich abstimmen, legen wir
             passend zu Ihrem Projekt fest.
           </p>
+          <a className="sh-link-row" href="/seo-schleswig-holstein" data-sh-reveal>
+            <Compass size={18} aria-hidden="true" />
+            <span>SEO für Schleswig-Holstein: Strategie für mehrere Regionen und Standorte</span>
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </section>
 
         <section id="ablauf" className="sh-section sh-band">

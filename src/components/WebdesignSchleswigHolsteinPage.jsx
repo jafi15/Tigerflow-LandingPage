@@ -831,8 +831,8 @@ export function WebdesignSchleswigHolsteinPage() {
             Diese Leistungen sind nicht automatisch im Website-Einstieg enthalten und werden
             separat vereinbart.
           </p>
-          <a className="wsh-link-row" href="/seo-heide" data-wsh-reveal>
-            <span>SEO aus Heide: Analyse, Keyword-Map und priorisierter Maßnahmenplan</span>
+          <a className="wsh-link-row" href="/seo-schleswig-holstein" data-wsh-reveal>
+            <span>SEO für Schleswig-Holstein: Keyword-Map, Seitenarchitektur und Maßnahmenplan</span>
             <ArrowRight size={16} aria-hidden="true" />
           </a>
         </section>

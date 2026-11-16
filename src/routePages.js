@@ -32,6 +32,11 @@ export const ROUTE_PAGES = {
     source: "src/components/SeoHeidePage.jsx",
     load: () => import("./components/SeoHeidePage.jsx").then((m) => m.SeoHeidePage),
   },
+  "/seo-schleswig-holstein": {
+    source: "src/components/SeoSchleswigHolsteinPage.jsx",
+    load: () =>
+      import("./components/SeoSchleswigHolsteinPage.jsx").then((m) => m.SeoSchleswigHolsteinPage),
+  },
   "/preise": {
     source: "src/components/PreisePage.jsx",
     load: () => import("./components/PreisePage.jsx").then((m) => m.PreisePage),

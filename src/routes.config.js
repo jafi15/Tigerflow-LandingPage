@@ -61,6 +61,18 @@ export const ROUTES = [
     priority: "0.9",
   },
   {
+    path: "/seo-schleswig-holstein",
+    outFile: "seo-schleswig-holstein.html",
+    title: "SEO Agentur Schleswig-Holstein | TigerFlow",
+    description:
+      "SEO für Unternehmen in Schleswig-Holstein: klare Keyword-, Seiten- und Regionalstrategie mit priorisiertem Maßnahmenplan. Setup ab 499 € netto.",
+    ogTitle: "SEO für Unternehmen in Schleswig-Holstein | TigerFlow",
+    ogDescription:
+      "Keyword-Map, Seitenarchitektur und priorisierter Maßnahmenplan für Unternehmen mit regionalem oder landesweitem Einzugsgebiet. SEO-Setup ab 499 € netto.",
+    changefreq: "monthly",
+    priority: "0.9",
+  },
+  {
     path: "/preise",
     outFile: "preise.html",
     title: "Webdesign-Preise & Website-Kosten | TigerFlow",
