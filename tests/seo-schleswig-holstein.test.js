@@ -787,11 +787,11 @@ describe("/seo-schleswig-holstein internal linking", () => {
     }
   });
 
-  it("receives inbound links only from /seo-heide, /webdesign-schleswig-holstein, /preise and /seo-betreuung", () => {
+  it("receives inbound links only from /seo-heide, /webdesign-schleswig-holstein, /preise, /seo-betreuung and /ueber-uns", () => {
     const linking = ROUTES.filter(
       (r) => r.path !== PATH && loadDoc(r.outFile).querySelector(`main a[href="${PATH}"]`)
     ).map((r) => r.path);
-    expect(linking.sort()).toEqual(["/preise", "/seo-betreuung", "/seo-heide", "/webdesign-schleswig-holstein"]);
+    expect(linking.sort()).toEqual(["/preise", "/seo-betreuung", "/seo-heide", "/ueber-uns", "/webdesign-schleswig-holstein"]);
   });
 
   it("leaves the homepage, /webdesign-heide and the shared service menu untouched", () => {

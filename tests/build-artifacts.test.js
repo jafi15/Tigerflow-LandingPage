@@ -12,6 +12,7 @@ const EXPECTED_FILES = [
   "seo-betreuung.html",
   "webdesign-schleswig-holstein.html",
   "preise.html",
+  "ueber-uns.html",
   "website-betreuung.html",
   "impressum.html",
   "datenschutz.html",

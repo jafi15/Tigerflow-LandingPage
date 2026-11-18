@@ -42,6 +42,7 @@ export function Footer({ highContrast = false }) {
           {contactEmail}
         </a>
         {[
+          { label: "Über uns", href: "/ueber-uns" },
           { label: "Impressum", href: "/impressum" },
           { label: "Datenschutz", href: "/datenschutz" },
           { label: "AGB", href: "/agb" },

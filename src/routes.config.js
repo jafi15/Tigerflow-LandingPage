@@ -109,6 +109,19 @@ export const ROUTES = [
     priority: "0.8",
   },
   {
+    path: "/ueber-uns",
+    outFile: "ueber-uns.html",
+    title: "Über TigerFlow | Webdesign, SEO & KI aus Heide",
+    description:
+      "Lernen Sie TigerFlow und Inhaber Jafar Hamzeh kennen: Webdesign, SEO und KI-Automatisierung aus Heide – klar geplant und passend zum Bedarf.",
+    ogTitle: "Über TigerFlow",
+    ogDescription:
+      "Wer hinter TigerFlow steht, wie wir arbeiten und wie Webdesign, SEO und Automatisierung sinnvoll zusammenspielen.",
+    ogImage: "/og/home.png",
+    changefreq: "yearly",
+    priority: "0.6",
+  },
+  {
     path: "/impressum",
     outFile: "impressum.html",
     title: "Impressum | TigerFlow",

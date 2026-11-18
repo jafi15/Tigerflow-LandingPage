@@ -50,6 +50,10 @@ export const ROUTE_PAGES = {
     load: () =>
       import("./components/WebsiteBetreuungPage.jsx").then((m) => m.WebsiteBetreuungPage),
   },
+  "/ueber-uns": {
+    source: "src/components/UeberUnsPage.jsx",
+    load: () => import("./components/UeberUnsPage.jsx").then((m) => m.UeberUnsPage),
+  },
   "/impressum": {
     source: "src/components/ImpressumPage.jsx",
     load: () => import("./components/ImpressumPage.jsx").then((m) => m.ImpressumPage),

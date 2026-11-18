@@ -97,6 +97,7 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
         </div>
         <div className="tf-service-footer">
           <span><i aria-hidden="true" /> Website als Einstieg. SEO und Automatisierung als Ausbau.</span>
+          {pageLink("/ueber-uns", "Über TigerFlow")}
           <button type="button" onClick={openProjectCheck}>Projekt einordnen <ArrowRight size={13} aria-hidden="true" /></button>
         </div>
       </div>

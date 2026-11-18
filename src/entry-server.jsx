@@ -9,6 +9,7 @@ import { SeoSchleswigHolsteinPage } from "./components/SeoSchleswigHolsteinPage"
 import { SeoBetreuungPage } from "./components/SeoBetreuungPage";
 import { PreisePage } from "./components/PreisePage";
 import { WebsiteBetreuungPage } from "./components/WebsiteBetreuungPage";
+import { UeberUnsPage } from "./components/UeberUnsPage";
 import { ImpressumPage } from "./components/ImpressumPage";
 import { DatenschutzPage } from "./components/DatenschutzPage";
 import { AGBPage } from "./components/AGBPage";
@@ -25,6 +26,7 @@ registerRoutePages({
   "/seo-betreuung": SeoBetreuungPage,
   "/preise": PreisePage,
   "/website-betreuung": WebsiteBetreuungPage,
+  "/ueber-uns": UeberUnsPage,
   "/impressum": ImpressumPage,
   "/datenschutz": DatenschutzPage,
   "/agb": AGBPage,
