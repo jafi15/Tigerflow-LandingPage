@@ -327,12 +327,13 @@ describe("/seo-betreuung internal linking", () => {
     for (const img of all("#root img")) expect(img.getAttribute("src")).toBe("/tigerflow-mark.png");
   });
 
-  it("receives one contextual link each from /seo-heide, /seo-schleswig-holstein and /preise", () => {
+  it("receives one contextual link each from /seo-heide, /seo-schleswig-holstein, /preise and /ueber-uns", () => {
     expect(anchors(PATH, "seo-heide.html")).toEqual(["SEO nach dem Setup kontinuierlich weiterentwickeln"]);
     expect(anchors(PATH, "seo-schleswig-holstein.html")).toEqual(["Monitoring, Onpage-Optimierung und Monatsbericht im Detail"]);
     expect(texts(`#seo a[href="${PATH}"]`, "preise.html")).toEqual(["Laufende SEO-Betreuung und Tarifrahmen ansehen"]);
     const contextual = ROUTES.filter((r) => r.path !== PATH && anchors(PATH, r.outFile).length).map((r) => r.path);
-    expect(contextual.sort()).toEqual(["/preise", "/seo-heide", "/seo-schleswig-holstein"]);
+    // /ueber-uns links the page as one of its five approved service paths.
+    expect(contextual.sort()).toEqual(["/preise", "/seo-heide", "/seo-schleswig-holstein", "/ueber-uns"]);
   });
 
   it("is a real link in the shared service menu instead of the 'Seite folgt' preview", () => {

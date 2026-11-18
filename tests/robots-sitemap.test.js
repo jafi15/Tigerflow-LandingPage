@@ -62,7 +62,6 @@ describe("sitemap.xml", () => {
       expect(loc.toLowerCase()).not.toContain("preview");
     }
     for (const forbidden of [
-      "/ueber-uns",
       "/kontakt",
     ]) {
       expect(content).not.toContain(`<loc>${SITE_URL}${forbidden}</loc>`);
@@ -82,6 +81,13 @@ describe("sitemap.xml", () => {
     const locs = (Array.isArray(urls) ? urls : [urls]).map((u) => u.loc);
     expect(locs.filter((loc) => loc === `${SITE_URL}/seo-schleswig-holstein`)).toHaveLength(1);
     expect(locs.filter((loc) => loc === `${SITE_URL}/seo-betreuung`)).toHaveLength(1);
+  });
+
+  it("lists the /ueber-uns page exactly once", () => {
+    const parsed = new XMLParser().parse(content);
+    const urls = parsed.urlset.url;
+    const locs = (Array.isArray(urls) ? urls : [urls]).map((u) => u.loc);
+    expect(locs.filter((loc) => loc === `${SITE_URL}/ueber-uns`)).toHaveLength(1);
   });
 
   it("lists the approved /preise page exactly once", () => {

@@ -95,6 +95,9 @@ export function StickyNav() {
 
             <div className="tf-sticky-actions" style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               <ServiceMegaMenu className="tf-sticky-mobile-menu" />
+              <a href="/ueber-uns" style={{ fontSize: "13px", color: C.textSec, textDecoration: "none" }} className="hide-mobile nav-link">
+                Über uns
+              </a>
               <a href="#rechner" style={{ fontSize: "13px", color: C.textSec, textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }} className="hide-mobile nav-link">
                 <Calculator size={14} /> ROI Rechner
               </a>

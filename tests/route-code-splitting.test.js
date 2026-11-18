@@ -15,6 +15,7 @@ const MONEY_PAGES = [
   { path: "/seo-schleswig-holstein", chunk: "SeoSchleswigHolsteinPage", prefix: "ssh-", file: "seo-schleswig-holstein.html" },
   { path: "/seo-betreuung", chunk: "SeoBetreuungPage", prefix: "sb-", file: "seo-betreuung.html" },
   { path: "/preise", chunk: "PreisePage", prefix: "pr-", file: "preise.html" },
+  { path: "/ueber-uns", chunk: "UeberUnsPage", prefix: "au-", file: "ueber-uns.html" },
   { path: "/website-betreuung", chunk: "WebsiteBetreuungPage", prefix: "wb-", file: "website-betreuung.html" },
 ];
 
