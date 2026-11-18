@@ -64,7 +64,7 @@ export function Navbar({ scrolled, currentPath = "/" }) {
         <ServiceMegaMenu currentPath={currentPath} />
         <a
           href="/ueber-uns"
-          className="nav-link tf-main-nav-link"
+          className="nav-link tf-main-nav-link tf-main-nav-link-keep"
           aria-current={currentPath === "/ueber-uns" ? "page" : undefined}
         >
           Über uns

@@ -47,6 +47,17 @@ describe("/ueber-uns route, metadata and rendering", () => {
     expect(source("UeberUnsPage.jsx")).not.toMatch(/React\.lazy|Suspense/);
   });
 
+  it("keeps the Über-uns link visible in the mobile header, in the same grey as the service menu", () => {
+    const nav = readFileSync("src/components/Navbar.jsx", "utf8");
+    expect(nav).toMatch(/href="\/ueber-uns"[\s\S]{0,80}tf-main-nav-link-keep/);
+    const css = readFileSync("src/index.css", "utf8");
+    const mobile = css.slice(css.indexOf("@media(max-width:768px)"));
+    const rule = mobile.match(/\.tf-main-nav \.tf-main-nav-link-keep\s*\{([^}]*)\}/);
+    expect(rule).not.toBeNull();
+    expect(rule[1]).toMatch(/display:\s*inline/);
+    expect(rule[1]).toMatch(/color:\s*#C9C5BE/i);
+  });
+
   it("ships its own 1200x630 share image instead of the homepage card", () => {
     const file = path.join(DIST_DIR, "og", "ueber-uns.png");
     expect(existsSync(file)).toBe(true);
