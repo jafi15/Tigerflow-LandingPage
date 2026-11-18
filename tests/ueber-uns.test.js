@@ -37,7 +37,7 @@ describe("/ueber-uns route, metadata and rendering", () => {
       ogTitle: "Über TigerFlow",
       ogDescription:
         "Wer hinter TigerFlow steht, wie wir arbeiten und wie Webdesign, SEO und Automatisierung sinnvoll zusammenspielen.",
-      ogImage: "/og/home.png",
+      ogImage: "/og/ueber-uns.png",
       changefreq: "yearly",
       priority: "0.6",
     });
@@ -45,6 +45,15 @@ describe("/ueber-uns route, metadata and rendering", () => {
     const server = readFileSync(path.join(process.cwd(), "src/entry-server.jsx"), "utf8");
     expect(server).toContain('"/ueber-uns": UeberUnsPage');
     expect(source("UeberUnsPage.jsx")).not.toMatch(/React\.lazy|Suspense/);
+  });
+
+  it("ships its own 1200x630 share image instead of the homepage card", () => {
+    const file = path.join(DIST_DIR, "og", "ueber-uns.png");
+    expect(existsSync(file)).toBe(true);
+    const png = readFileSync(file);
+    expect(png.readUInt32BE(16)).toBe(1200);
+    expect(png.readUInt32BE(20)).toBe(630);
+    expect(png.equals(readFileSync(path.join(DIST_DIR, "og", "home.png")))).toBe(false);
   });
 
   it("builds a prerendered file with canonical, robots and social metadata", () => {
@@ -57,7 +66,7 @@ describe("/ueber-uns route, metadata and rendering", () => {
     expect(doc.querySelector('meta[property="og:title"]').getAttribute("content")).toBe("Über TigerFlow");
     expect(doc.querySelector('meta[property="og:description"]').getAttribute("content")).toBe(route.ogDescription);
     expect(doc.querySelector('meta[property="og:url"]').getAttribute("content")).toBe(`${SITE_URL}${PATH}`);
-    expect(doc.querySelector('meta[property="og:image"]').getAttribute("content")).toContain("/og/home.png");
+    expect(doc.querySelector('meta[property="og:image"]').getAttribute("content")).toContain("/og/ueber-uns.png");
     expect(doc.querySelector('meta[name="twitter:card"]')).not.toBeNull();
   });
 

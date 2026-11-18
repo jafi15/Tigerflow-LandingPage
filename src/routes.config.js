@@ -117,7 +117,7 @@ export const ROUTES = [
     ogTitle: "Über TigerFlow",
     ogDescription:
       "Wer hinter TigerFlow steht, wie wir arbeiten und wie Webdesign, SEO und Automatisierung sinnvoll zusammenspielen.",
-    ogImage: "/og/home.png",
+    ogImage: "/og/ueber-uns.png",
     changefreq: "yearly",
     priority: "0.6",
   },
