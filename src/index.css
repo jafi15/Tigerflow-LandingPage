@@ -422,6 +422,7 @@ body {
   .tf-global-navbar { padding: 0 20px !important; }
   .tf-main-nav { gap: 10px !important; }
   .tf-main-nav-link { display: none; }
+  .tf-main-nav .tf-main-nav-link-keep { display: inline; font-size: 12px; white-space: nowrap; color: #C9C5BE; }
   .tf-main-nav-cta { display: none; }
   .tf-sticky-mobile-menu { display: block; }
   .tf-sticky-bar { padding: 0 14px !important; }
