@@ -21,6 +21,35 @@ import { renderRoutePage } from "./routePages";
 import "./index.css";
 
 const KNOWN_PATHS = new Set(ROUTES.map((r) => r.path));
+// Pages whose own sticky section bar already includes the service menu (no second bar).
+const LOCAL_STICKY_BAR_PATHS = new Set([
+  "/seo-heide",
+  "/seo-schleswig-holstein",
+  "/preise",
+  "/seo-betreuung",
+  "/webdesign-schleswig-holstein",
+]);
+const STICKY_PAGE_LINKS = {
+  "/webdesign-heide": [
+    { href: "#ablauf", label: "Ablauf" },
+    { href: "#preis", label: "Preis" },
+    { href: "#faq", label: "FAQ" },
+  ],
+  "/webdesign-dithmarschen": [
+    { href: "#situationen", label: "Unternehmen" },
+    { href: "#preis", label: "Preis" },
+    { href: "#faq", label: "FAQ" },
+  ],
+  "/website-betreuung": [
+    { href: "#pruefroutine", label: "Prüfroutine" },
+    { href: "#pakete", label: "Pakete" },
+    { href: "#faq", label: "FAQ" },
+  ],
+  "/ueber-uns": [
+    { href: "/ueber-uns", label: "Über uns", current: true },
+    { href: "#arbeitsweise", label: "Arbeitsweise" },
+  ],
+};
 
 export default function App({
   pathname = typeof window !== "undefined" ? window.location.pathname : "/",
@@ -43,8 +72,15 @@ export default function App({
       {withSharedNavbar ? (
         <><Navbar scrolled currentPath={pathname} />{routePage}</>
       ) : routePage ? (
-        // Money pages bring their own header.
-        routePage
+        // Money pages bring their own (static) header. Pages with their own section bar carry the
+        // service menu in that bar; all others get the shared sticky bar, placed before the page
+        // (and therefore before <main>).
+        <>
+          {!LOCAL_STICKY_BAR_PATHS.has(pathname) && (
+            <StickyNav threshold={80} currentPath={pathname} pageLinks={STICKY_PAGE_LINKS[pathname] || []} />
+          )}
+          {routePage}
+        </>
       ) : (
         <div
           style={{

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { C } from "../theme";
 import { Footer } from "./Footer";
 import { ServiceMegaMenu } from "./ServiceMegaMenu";
+import { useScrolledPast } from "./useScrolledPast";
 import { ROUTES, SITE_URL } from "../routes.config";
 import "./SeoBetreuungPage.css";
 
@@ -576,6 +577,7 @@ function FloatingBar({ visible, active }) {
     >
       <div className="sb-bar-inner">
         <BrandLink />
+        <ServiceMegaMenu className="tf-service-menu-bar" currentPath={PATH} />
         <nav className="sb-bar-links" aria-label="Abschnitte">
           {navLinks.map(({ id, label }) => (
             <a key={id} href={`#${id}`} aria-current={active === id ? "true" : undefined}>
@@ -692,6 +694,8 @@ function LimitList({ title, items }) {
 export function SeoBetreuungPage() {
   const pageRef = useReveal();
   const { pastHero, reachedFinal } = useScrollChrome(pageRef);
+  // The section bar also covers the gap between the static header and the hero button.
+  const pastHeader = useScrolledPast(80);
   const activeSection = useActiveSection(pageRef);
 
   return (
@@ -704,7 +708,7 @@ export function SeoBetreuungPage() {
       />
       <a className="sb-skip" href="#inhalt">Zum Inhalt springen</a>
       <PageHeader />
-      <FloatingBar visible={pastHero} active={activeSection} />
+      <FloatingBar visible={pastHero || pastHeader} active={activeSection} />
 
       <main id="inhalt" tabIndex={-1}>
         <section className="sb-hero">
