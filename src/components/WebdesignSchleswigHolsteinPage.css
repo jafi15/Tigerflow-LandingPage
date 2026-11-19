@@ -360,7 +360,6 @@ html:has(.wsh-page) { scroll-padding-top: 88px; }
 @media (max-width: 760px) {
   .wsh-nav { width: calc(100% - 40px); }
   .wsh-nav-links > a { display: none; }
-  .wsh-bar { display: none; }
   .wsh-hero { padding: 120px 22px 72px; gap: 48px; }
   .wsh-hero::before { width: 360px; height: 360px; }
   .wsh-hero h1 { margin-top: 20px; font-size: clamp(30px, 8.6vw, 44px); line-height: 1.08; letter-spacing: -.03em; }

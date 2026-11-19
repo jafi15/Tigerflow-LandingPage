@@ -18,6 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import { C } from "../theme";
 import { Footer } from "./Footer";
 import { ServiceMegaMenu } from "./ServiceMegaMenu";
+import { useScrolledPast } from "./useScrolledPast";
 import { ROUTES, SITE_URL } from "../routes.config";
 import "./SeoHeidePage.css";
 
@@ -414,12 +415,13 @@ function useActiveSection(pageRef) {
 
 function StickyHeader({ visible, active }) {
   return (
-    <header className={`sh-topbar${visible ? " is-visible" : ""}`} inert={!visible}>
+    <div className={`sh-topbar${visible ? " is-visible" : ""}`} inert={!visible}>
       <div className="sh-topbar-inner">
         <a className="sh-brand" href="/" aria-label="TigerFlow Startseite">
           <img src="/tigerflow-mark.png" alt="" aria-hidden="true" width="320" height="245" />
           <span>TigerFlow</span>
         </a>
+        <ServiceMegaMenu className="tf-service-menu-bar" currentPath={"/seo-heide"} />
         <nav className="sh-topbar-links" aria-label="Abschnitte">
           {topbarLinks.map(({ id, label }) => (
             <a key={id} href={`#${id}`} aria-current={active === id ? "true" : undefined}>
@@ -431,7 +433,7 @@ function StickyHeader({ visible, active }) {
           Projekt-Check <ArrowRight size={15} aria-hidden="true" />
         </ProjectCheckButton>
       </div>
-    </header>
+    </div>
   );
 }
 
@@ -553,6 +555,8 @@ function ScopeList({ title, items, icon: Icon, tone }) {
 export function SeoHeidePage() {
   const pageRef = useReveal();
   const { pastHero, reachedFinal } = useScrollChrome(pageRef);
+  // The section bar also covers the gap between the static header and the hero button.
+  const pastHeader = useScrolledPast(80);
   const activeSection = useActiveSection(pageRef);
 
   return (
@@ -569,6 +573,7 @@ export function SeoHeidePage() {
       />
       <a className="sh-skip" href="#inhalt">Zum Inhalt springen</a>
       <PageHeader />
+      <StickyHeader visible={pastHero || pastHeader} active={activeSection} />
 
       <main id="inhalt" tabIndex={-1}>
         <section className="sh-hero">
@@ -837,7 +842,6 @@ export function SeoHeidePage() {
       </main>
 
       <Footer />
-      <StickyHeader visible={pastHero} active={activeSection} />
       <StickyCta visible={pastHero && !reachedFinal} />
     </div>
   );

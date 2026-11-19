@@ -367,7 +367,6 @@
 @media (max-width: 760px) {
   .pr-nav { width: calc(100% - 40px); }
   .pr-nav-links > a { display: none; }
-  .pr-topbar { display: none; }
   .pr-hero { padding: 120px 22px 72px; gap: 48px; }
   .pr-hero h1 { margin-top: 20px; font-size: clamp(34px, 10vw, 48px); line-height: 1.06; letter-spacing: -.035em; }
   .pr-lead { font-size: 16px; }

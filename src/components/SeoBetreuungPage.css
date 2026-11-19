@@ -254,7 +254,6 @@ html:has(.sb-page) { scroll-padding-top: 88px; }
 @media (max-width: 760px) {
   .sb-nav { width: calc(100% - 40px); }
   .sb-nav-links > a { display: none; }
-  .sb-bar { display: none; }
   .sb-hero { padding: 124px 22px 72px; gap: 48px; align-items: stretch; }
   .sb-hero-copy { align-items: flex-start; text-align: left; }
   .sb-hero h1 { margin: 20px 0; font-size: clamp(31px, 9vw, 44px); line-height: 1.08; letter-spacing: -.03em; }

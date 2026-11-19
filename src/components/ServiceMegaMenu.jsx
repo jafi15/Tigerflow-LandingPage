@@ -13,7 +13,8 @@ export function ServiceMegaMenu({ className = "", currentPath = "" }) {
       if (menuRef.current?.open && !menuRef.current.contains(event.target)) close();
     };
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
+      // Only the open menu reacts, so another menu on the page (e.g. the header one) never steals the focus.
+      if (event.key === "Escape" && menuRef.current?.open) {
         close();
         menuRef.current?.querySelector("summary")?.focus();
       }

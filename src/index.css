@@ -207,6 +207,9 @@ body {
 }
 
 .tf-sticky-cta-short { display: none; }
+.tf-sticky-page-links { min-width:0;display:flex;align-items:center;gap:2px; }
+.tf-sticky-page-links a { min-height:44px;padding:0 9px;display:inline-flex;align-items:center;flex:0 0 auto;color:#A3A3A3;font-size:13px;text-decoration:none;white-space:nowrap; }
+.tf-sticky-page-links a:hover,.tf-sticky-page-links a[aria-current="page"] { color:#F8F5EF; }
 
 @keyframes heroCorridorLineReveal {
   from { transform: scaleX(0); opacity: 0; }
@@ -431,6 +434,11 @@ body {
   .tf-sticky-cta { padding: 9px 12px !important; gap: 5px !important; }
   .tf-sticky-cta-full { display: none; }
   .tf-sticky-cta-short { display: inline; }
+  .tf-sticky-bar-page-links .tf-sticky-brand { display:none !important; }
+  .tf-sticky-bar-page-links .tf-sticky-actions { width:100%;min-width:0;flex:1 1 auto; }
+  .tf-sticky-bar-page-links .tf-sticky-cta { display:none !important; }
+  .tf-sticky-page-links { flex:1 1 auto;min-width:0;justify-content:flex-start;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none; }
+  .tf-sticky-page-links::-webkit-scrollbar { display:none; }
   .hero-h1 { font-size: clamp(32px, 9vw, 48px) !important; }
   .legal-row {
     grid-template-columns: 1fr !important;

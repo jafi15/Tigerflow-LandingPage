@@ -13,7 +13,9 @@ function openProjectCheck(event) {
   );
 }
 
-export function StickyNav() {
+// `threshold`: scroll distance after which the bar appears. The homepage keeps its fixed navbar
+// (400px); pages with their own static header pass a value just past that header.
+export function StickyNav({ threshold = 400, currentPath = "/", pageLinks = [] }) {
   const [show, setShow] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -23,11 +25,11 @@ export function StickyNav() {
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
       setProgress(scrolled);
-      setShow(winScroll > 400);
+      setShow(winScroll > threshold);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [threshold]);
 
   return (
     <AnimatePresence>
@@ -36,7 +38,7 @@ export function StickyNav() {
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           exit={{ y: -100 }}
-          className="tf-sticky-bar"
+          className={`tf-sticky-bar${pageLinks.length ? " tf-sticky-bar-page-links" : ""}`}
           style={{
             position: "fixed",
             top: 0,
@@ -57,7 +59,7 @@ export function StickyNav() {
           <div style={{ position: "absolute", bottom: "-0.5px", left: 0, height: "1px", background: C.accent, width: `${progress}%`, transition: "width 0.1s linear" }} />
 
           <div style={{ width: "100%", maxWidth: "1100px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div className="tf-sticky-brand" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "9px" }}>
                 <img
                   src="/tigerflow-mark.png"
@@ -90,17 +92,27 @@ export function StickyNav() {
                 whiteSpace: "nowrap",
               }}
             >
-              <ServiceMegaMenu className="tf-service-menu-sticky" />
+              <ServiceMegaMenu className="tf-service-menu-sticky" currentPath={currentPath} />
             </div>
 
             <div className="tf-sticky-actions" style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-              <ServiceMegaMenu className="tf-sticky-mobile-menu" />
-              <a href="/ueber-uns" style={{ fontSize: "13px", color: C.textSec, textDecoration: "none" }} className="hide-mobile nav-link">
-                Über uns
-              </a>
-              <a href="#rechner" style={{ fontSize: "13px", color: C.textSec, textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }} className="hide-mobile nav-link">
-                <Calculator size={14} /> ROI Rechner
-              </a>
+              <ServiceMegaMenu className="tf-sticky-mobile-menu" currentPath={currentPath} />
+              {pageLinks.length ? (
+                <nav className="tf-sticky-page-links" aria-label="Seitennavigation">
+                  {pageLinks.map(({ href, label, current }) => (
+                    <a key={href} href={href} aria-current={current ? "page" : undefined}>{label}</a>
+                  ))}
+                </nav>
+              ) : (
+                <>
+                  <a href="/ueber-uns" style={{ fontSize: "13px", color: C.textSec, textDecoration: "none" }} className="hide-mobile nav-link">
+                    Über uns
+                  </a>
+                  <a href={currentPath === "/" ? "#rechner" : "/#rechner"} style={{ fontSize: "13px", color: C.textSec, textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }} className="hide-mobile nav-link">
+                    <Calculator size={14} /> ROI Rechner
+                  </a>
+                </>
+              )}
               <button
                 type="button"
                 onClick={openProjectCheck}

@@ -18,6 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import { C } from "../theme";
 import { Footer } from "./Footer";
 import { ServiceMegaMenu } from "./ServiceMegaMenu";
+import { useScrolledPast } from "./useScrolledPast";
 import { ROUTES, SITE_URL } from "../routes.config";
 import "./WebdesignSchleswigHolsteinPage.css";
 
@@ -466,6 +467,7 @@ function FloatingBar({ visible, active }) {
     >
       <div className="wsh-bar-inner">
         <BrandLink />
+        <ServiceMegaMenu className="tf-service-menu-bar" currentPath={PATH} />
         <nav className="wsh-bar-links" aria-label="Abschnitte">
           {navLinks.map(({ id, label }) => (
             <a key={id} href={`#${id}`} aria-current={active === id ? "true" : undefined}>
@@ -569,6 +571,8 @@ function SectionIntro({ eyebrow, title, text, className = "" }) {
 export function WebdesignSchleswigHolsteinPage() {
   const pageRef = useReveal();
   const pastHero = usePastHero(pageRef);
+  // The section bar also covers the gap between the static header and the hero button.
+  const pastHeader = useScrolledPast(80);
   const activeSection = useActiveSection(pageRef);
   const reachedFinal = useReachedFinal(pageRef);
 
@@ -586,7 +590,7 @@ export function WebdesignSchleswigHolsteinPage() {
       />
       <a className="wsh-skip" href="#inhalt">Zum Inhalt springen</a>
       <PageHeader inactive={pastHero} />
-      <FloatingBar visible={pastHero} active={activeSection} />
+      <FloatingBar visible={pastHero || pastHeader} active={activeSection} />
 
       <main id="inhalt" tabIndex={-1}>
         <section className="wsh-hero">

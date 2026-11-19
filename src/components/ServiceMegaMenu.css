@@ -30,6 +30,13 @@
 .tf-service-footer i { flex:0 0 auto;width:5px;height:5px;border-radius:50%;background:#FF7A00;box-shadow:0 0 10px rgba(255,122,0,.7); }
 .tf-service-footer>a,.tf-service-footer>button { padding:0;display:flex;align-items:center;gap:7px;border:0;background:none;color:#FF8A1D!important;text-decoration:none;font-family:inherit;font-size:10px!important;font-weight:700;white-space:nowrap;cursor:pointer; }
 
+/* Variant inside a page's own sticky section bar: the panel is centred on the viewport, not on the trigger. */
+@media(min-width:761px) {
+  .tf-service-menu-bar { flex:0 0 auto; }
+  .tf-service-menu-bar>summary { min-height:44px; }
+  .tf-service-menu-bar .tf-service-panel { position:fixed;top:70px;left:50%;transform:translateX(-50%); }
+}
+
 @media(max-width:760px) {
   .tf-service-menu>summary { padding:9px 10px;border:1px solid rgba(255,122,0,.16);border-radius:9px;background:rgba(12,12,12,.82);color:#C9C5BE; }
   .tf-service-panel { position:fixed;top:70px;left:14px;right:14px;width:auto;max-height:calc(100vh - 84px);padding:16px;border-radius:15px;transform:none;overflow-y:auto; }
@@ -43,6 +50,14 @@
   .tf-service-groups section>a,.tf-service-preview { min-height:30px;padding:6px 7px; }
   .tf-service-footer { align-items:flex-start;flex-direction:column;padding:12px 5px 2px;gap:10px; }
   .tf-service-footer>span { line-height:1.5; }
+  body :is(.sh-topbar-inner,.ssh-bar-inner,.pr-topbar-inner,.sb-bar-inner,.wsh-bar-inner) { width:calc(100% - 24px);gap:8px;justify-content:flex-start; }
+  body :is(.sh-topbar-inner,.ssh-bar-inner,.pr-topbar-inner,.sb-bar-inner,.wsh-bar-inner)>:first-child { display:none; }
+  .tf-service-menu-bar { flex:0 0 auto; }
+  .tf-service-menu-bar>summary { min-height:44px; }
+  .tf-service-menu-bar ~ nav { display:flex;flex:1 1 auto;min-width:0;max-width:none;justify-content:flex-start;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none; }
+  .tf-service-menu-bar ~ nav::-webkit-scrollbar { display:none; }
+  .tf-service-menu-bar ~ nav a { flex:0 0 auto;white-space:nowrap; }
+  .tf-service-menu-bar ~ button { display:none; }
 }
 
 @media(prefers-reduced-motion:reduce) {

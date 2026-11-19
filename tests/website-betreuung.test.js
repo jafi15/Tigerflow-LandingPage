@@ -704,8 +704,10 @@ describe("/website-betreuung inbound links", () => {
       OUT_FILE,
     ]) {
       const links = loadDoc(file).querySelectorAll(`.tf-service-menu a[href="${PATH}"]`);
-      expect(links, file).toHaveLength(1);
-      expect(clean(links[0])).toBe("Website-Betreuung");
+      // Pages with their own sticky section bar carry a second instance of the same menu there.
+      const expected = ["webdesign-schleswig-holstein.html", "seo-heide.html", "preise.html"].includes(file) ? 2 : 1;
+      expect(links, file).toHaveLength(expected);
+      for (const link of links) expect(clean(link)).toBe("Website-Betreuung");
     }
     const current = loadDoc().querySelector(`.tf-service-menu a[href="${PATH}"]`);
     expect(current.getAttribute("aria-current")).toBe("page");
